@@ -1,20 +1,19 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import Game from "./components/Game/Game";
 import Nav from "./components/Nav";
 import Card from './components/UI/Card'
+
 import "./index.css";
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
-        <Card>
+        <Card >
           <Nav />
           <Game />
         </Card>
     );
-  }
 }
 
 // ================================================

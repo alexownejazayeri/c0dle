@@ -11,6 +11,7 @@
 
 .btn {
     all: unset;
+    cursor: pointer;
   }
 
 .key-row {

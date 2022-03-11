@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import Board from "./Board";
@@ -6,33 +6,52 @@ import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
-const Game = (props) => {
-  
-  const sampleBoardState = {
-    rowState: [],
-    boardState: ["guess", "", "", "", "", ""],
-    evaluations: [["absent", "absent", "absent", "absent", "absent"]],
-    gameStatus: "IN_PROGRESS",
-    hardMode: false,
-    solution: "month",
-  };
-
-  const clickHandler = (e) => {
-    console.log(e.target.innerHTML);
+class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      letters: "",
+    };
   }
 
-  const keyPressHandler = (e) => {
-    console.log("I'm getting pressed!");
-  }
+  render() {
+    const clickHandler = (e) => {
+      const newChar = e.target.innerHTML;
+      const tagId = e.target.id;
+      const letters = this.state.letters;
 
-  return (
-    <div className="main">
-      <div className="game">
-        <Board />
-        <Keyboard onClick={clickHandler} />
+      newChar.length === 1 && tagId !== 'bck-key' && letters.length < 5
+        ? this.setState({ letters: letters + newChar })
+        : tagId === 'bck-key'
+        ? this.setState({ letters: letters.substring(0, letters.length - 1) })
+        : console.log('too long!');
+    };
+
+    const keyDownHandler = (e) => {
+      const letters = this.state.letters;
+      const strLen = letters.length;
+
+      e.key !== "Backspace" && strLen < 5
+        ? this.setState({ letters: letters + e.key })
+        : e.key === "Backspace"
+        ? this.setState({ letters: letters.substring(0, strLen - 1) })
+        : console.log("too long!");
+    };
+
+    return (
+      <div className="main">
+        <div className="game">
+          <Board 
+            letters={this.state.letters}
+            />
+          <Keyboard 
+            onClick={clickHandler}
+            onKeyDown={keyDownHandler}
+            />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Game;
