@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+  
+  .game {
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    min-width: 350px;
+    align-items: center;
+  }
