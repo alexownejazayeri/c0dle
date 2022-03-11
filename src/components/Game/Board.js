@@ -1,54 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 import './Board.css';
+import Row from '../UI/Row';
 
 const Board = (props) => {
-
-    return (
+  
+  return (
       <div className="game-board">
-        <div className="tile-row">
-          <div className="tile">{props.gameState.boardState[0][0]}</div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
-        <div className="tile-row">
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
-        <div className="tile-row">
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
-        <div className="tile-row">
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
-        <div className="tile-row">
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
-        <div className="tile-row">
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-          <div className="tile"></div>
-        </div>
+        <Row />
+        <Row />
+        <Row />
+        <Row />
+        <Row />
+        <Row />
       </div>
     );
   };

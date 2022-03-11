@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import BackKey from '../UI/BackKey';
+import EnterKey from '../UI/EnterKey';
 import './Keyboard.css';
 
 const Keyboard = (props) => {
-    
+
     const keys = {
         'row1': ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         'row2': ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -29,7 +30,7 @@ const Keyboard = (props) => {
           {keyGenerator(keys['row2'])}
         </div>
         <div className="key-row">
-          <div className="fn-key">ENTER</div>
+          <EnterKey />
           {keyGenerator(keys['row3'])}
           <BackKey />
         </div>

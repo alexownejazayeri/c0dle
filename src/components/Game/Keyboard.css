@@ -33,16 +33,3 @@
   border: 2px white solid;
   border-radius: 7px;
 }
-
-.fn-key {
-  display: flex;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 5px;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 65px;
-  border: 2px white solid;
-  border-radius: 7px;
-}

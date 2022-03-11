@@ -12,24 +12,3 @@
     flex-grow: 1;
   }
   
-  .tile-row {
-    display: flex;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
-  }
-  
-  .tile {
-    display: flex;
-    font-size: 2rem;
-    text-align: center;
-    line-height: 2rem;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    user-select: none;
-    height: 62px;
-    width: 62px;
-    border-radius: 15px;
-    border: 2px white solid;
-  }
