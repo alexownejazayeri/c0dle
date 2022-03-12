@@ -10,7 +10,8 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      letters: "",
+      attempts: ['', '', '', '', '', ''], 
+      turn: 0,
     };
   }
 
@@ -18,24 +19,45 @@ class Game extends React.Component {
     const clickHandler = (e) => {
       const newChar = e.target.innerHTML;
       const tagId = e.target.id;
-      const letters = this.state.letters;
 
-      newChar.length === 1 && tagId !== 'bck-key' && letters.length < 5
-        ? this.setState({ letters: letters + newChar })
-        : tagId === 'bck-key'
-        ? this.setState({ letters: letters.substring(0, letters.length - 1) })
-        : console.log('too long!');
+      const turn = this.state.turn;
+      const attempts = this.state.attempts;
+
+
+      newChar.length === 1 && tagId !== 'bck-key' && attempts[turn].length < 5
+        ? this.setState({
+          attempts: attempts.map((el, i) => i === turn ? el + newChar : el),
+          turn: turn, 
+        })
+        : tagId === 'bck-key' // Checks for click on 'back key'
+        ? this.setState({
+          attempts: attempts.map((el, i) => i === turn ? el.substring(0, el.length - 1) : el), // Removes char at end of string
+          turn: turn, 
+        })
+        : null;
     };
 
     const keyDownHandler = (e) => {
-      const letters = this.state.letters;
-      const strLen = letters.length;
+      const turn = this.state.turn;
+      const attempts = this.state.attempts;
+      const re = /^[a-z]/;
 
-      e.key !== "Backspace" && strLen < 5
-        ? this.setState({ letters: letters + e.key })
-        : e.key === "Backspace"
-        ? this.setState({ letters: letters.substring(0, strLen - 1) })
-        : console.log("too long!");
+      re.test(e.key) && attempts[turn].length < 5
+        ? this.setState({
+          attempts: attempts.map((el, i) => i === turn ? el + e.key : el),
+          turn: turn, 
+        })
+        : e.key === "Backspace" // Checks for backspace keydown
+        ? this.setState({
+          attempts: attempts.map((el, i) => i === turn ? el.substring(0, el.length - 1) : el), // Removes char at end of string
+          turn: turn, 
+        })
+        : e.key === 'Enter' && attempts[turn].length === 5
+          ? this.setState({
+            attempts: attempts,
+            turn: turn + 1,
+          })
+        : null;
     };
 
     return (
@@ -43,6 +65,7 @@ class Game extends React.Component {
         <div className="game">
           <Board 
             letters={this.state.letters}
+            attempts={this.state.attempts}
             />
           <Keyboard 
             onClick={clickHandler}

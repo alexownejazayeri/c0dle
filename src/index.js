@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import Game from "./components/Game/Game";
 import Nav from "./components/Nav";
-import Card from './components/UI/Card'
+import Card from './components/UI/Card';
 
 import "./index.css";
 

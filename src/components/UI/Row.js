@@ -8,7 +8,6 @@ import './Row.css';
 const Row = (props) => {
     const tileRender = (str) => {
         let tileArr = Array(5).fill("");
-        console.log('I am the string: ' + str);
         return tileArr.map((el, i) => <Tile key={i} id={`tile-${i}`}>{str[i]}</Tile>)
       }
     

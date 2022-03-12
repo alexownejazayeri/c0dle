@@ -7,12 +7,10 @@ import "./Board.css";
 const Board = (props) => {
   // attempt number (index of arr) increments on submission
   // a string with max length 5
-  const wordArr = props.letters;
+  const wordArr = props.attempts;
 
   const renderBoard = (arr) => {
-    console.log(arr);
-    const rowArr = Array(6).fill("");
-    return rowArr.map((el, i) => <Row word={arr} key={i} id={`row-${i}`} />);
+    return arr.map((el, i) => <Row word={arr[i]} key={i} id={`row-${i}`} />);
   };
 
   return <div className="game-board">{renderBoard(wordArr)}</div>;
