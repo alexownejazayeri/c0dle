@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react';
 
 import './Tile.css';
 
 const Tile = (props) => {
+    let tileState = props.tileState;
+
     return(
-        <div className='tile'>
+        <div className={`tile${tileState}`}>
             {props.children}
         </div>
     );

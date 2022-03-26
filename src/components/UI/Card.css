@@ -1,5 +1,4 @@
 .card {
-    border: 1px yellow solid;
     height: 90vh;
     width: 80vw;
     padding: 21px;
@@ -7,8 +6,8 @@
     flex-direction: column;
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(27px);
     -webkit-backdrop-filter: blur(5px);
-    border-radius: 40px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
   }

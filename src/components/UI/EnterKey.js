@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 
 import "./EnterKey.css";
 
-const EnterKey = () => {
+const EnterKey = (props) => {
     return(
-        <div className="enter-key">ENTER</div>
+        <div className="enter-key">
+        <button id="enter-key" className="btn-enter" onClick={props.onClick}>
+        ENTER
+        </button>
+        </div>
     );
 }
 

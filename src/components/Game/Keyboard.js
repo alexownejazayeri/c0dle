@@ -35,7 +35,7 @@ const Keyboard = (props) => {
       <div className="key-row">{keyGenerator(keys["row1"])}</div>
       <div className="key-row">{keyGenerator(keys["row2"])}</div>
       <div className="key-row">
-        <EnterKey />
+        <EnterKey onClick={props.onClick}/>
         {keyGenerator(keys["row3"])}
         <BackKey onClick={props.onClick}/>
       </div>

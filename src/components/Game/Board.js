@@ -5,15 +5,37 @@ import Row from "../UI/Row";
 import "./Board.css";
 
 const Board = (props) => {
-  // attempt number (index of arr) increments on submission
-  // a string with max length 5
   const wordArr = props.attempts;
+  const turn = props.turn;
+  const globalState = props.status;
 
-  const renderBoard = (arr) => {
-    return arr.map((el, i) => <Row word={arr[i]} key={i} id={`row-${i}`} />);
-  };
+  
+  
+  
 
-  return <div className="game-board">{renderBoard(wordArr)}</div>;
+  const renderBoard = (arr) => arr.map((el, i) => {
+    
+    let rowState;
+    
+    if (globalState[i]) {
+      rowState = globalState[i];
+    } else {
+      rowState = new Array(5).fill("");
+    }
+      
+      return <Row
+        word={arr[i]}
+        key={i}
+        id={`row-${i}`}
+        codle={props.codle}
+        status={rowState}
+        turn={props.turn}
+      />
+    });
+
+  return (
+  <div className="game-board">{renderBoard(wordArr)}</div>
+  );
 };
 
 export default Board;
