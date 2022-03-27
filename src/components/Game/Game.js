@@ -13,6 +13,34 @@ class Game extends React.Component {
       status: [],
       turn: 0,
       codle: "const",
+      keyStyles: {
+        "A": '',
+        "B": '',
+        "C": '',
+        "D": '',
+        "E": '',
+        "F": '',
+        "G": '',
+        "H": '',
+        "I": '',
+        "J": '',
+        "K": '',
+        "L": '',
+        "M": '',
+        "N": '',
+        "O": '',
+        "P": '',
+        "Q": '',
+        "R": '',
+        "S": '',
+        "T": '',
+        "U": '',
+        "V": '',
+        "W": '',
+        "X": '',
+        "Y": '',
+        "Z": '',
+      },
     };
   }
 
@@ -20,7 +48,7 @@ class Game extends React.Component {
     const clickHandler = (e) => {
       let newChar = e.target.innerHTML;
       let tagId = e.target.id;
-      let win = false; // possibly buggy or ineffective
+      let win = false;
 
       let turn = this.state.turn;
       let attempts = this.state.attempts;
@@ -148,6 +176,7 @@ class Game extends React.Component {
           if (pool.includes(char) && attempt[i] === answer[i]) {
             pool.splice(pool.indexOf(char), 1);
             roundStatus.push("-correct");
+            console.log(char);
           } else if (pool.includes(char) && attempt[i] !== answer[i]) {
             pool.splice(pool.indexOf(char), 1);
             roundStatus.push("-present");
@@ -173,7 +202,11 @@ class Game extends React.Component {
             status={this.state.status}
             turn={this.state.turn}
           />
-          <Keyboard onClick={clickHandler} onKeyDown={keyDownHandler} />
+          <Keyboard 
+          onClick={clickHandler} 
+          onKeyDown={keyDownHandler}
+          styles={this.state.keyStyles}
+           />
         </div>
       </div>
     );
