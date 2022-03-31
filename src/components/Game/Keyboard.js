@@ -11,14 +11,11 @@ const Keyboard = (props) => {
     row2: ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     row3: ["Z", "X", "C", "V", "B", "N", "M"],
   };
-
   
   const keyGenerator = (keyArr) => {
     const styles = props.styles;
-
     return keyArr.map((char) => {
-      const style = styles[char]
-      console.log(styles[char]);
+      let style = styles[char];
       return (
         <button
           key={char}
