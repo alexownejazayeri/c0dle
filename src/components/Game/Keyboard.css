@@ -52,6 +52,20 @@
   border: 2px rgb(100, 252, 30) solid;
 }
 
+.letter-key-correct:hover {
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 30px;
+  border-radius: 7px;
+  border: 2px rgb(100, 252, 30) solid;
+  background-color: rgba(100, 252, 30, 0.486);
+}
+
 .letter-key-present {
   display: flex;
   font-size: 18px;
@@ -63,6 +77,20 @@
   width: 30px;
   border-radius: 7px;
   border: 2px #ffec8d solid;
+}
+
+.letter-key-present:hover {
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 30px;
+  border-radius: 7px;
+  border: 2px #ffec8d solid;
+  background-color: #ffec8d80;
 }
 
 .letter-key-incorrect {

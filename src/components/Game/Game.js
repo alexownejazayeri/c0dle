@@ -5,11 +5,13 @@ import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
+const FUEL = require('../../vocab-list.json');
+
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      codle: "error",
+      codle: getRandomVocab(FUEL),
       attempts: ["", "", "", "", "", ""],
       status: [],
       turn: 0,
@@ -17,7 +19,7 @@ class Game extends Component {
       win: false,
     };
   }
-
+  
   render() {
     const keyDownHandler = (e) => {
       let turn = this.state.turn;
@@ -63,20 +65,45 @@ class Game extends Component {
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
 
+        window.alert("Winner! Winner! Veggie Dinner!");
+
         // If enter key and wrong attempt
-      } else if (e.key === "Enter" && attempts[turn].length === 5 && winState === false) {
+      } else if (
+        e.key === "Enter" &&
+        attempts[turn].length === 5 &&
+        turn !== 5 &&
+        winState === false
+      ) {
         const attempt = attempts[turn].split("");
         const answer = this.state.codle;
 
         const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = statusHandler(attempt, answer);
-
         this.setState({
           status: [...this.state.status, roundStatus],
           turn: turn + 1,
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
+      } else if (
+        e.key === "Enter" &&
+        attempts[turn].length === 5 &&
+        turn === 5 &&
+        winState === false
+      ) {
+        const attempt = attempts[turn].split("");
+        const answer = this.state.codle;
+
+        const matrix = evaluateMatrix(answer, attempt);
+        const roundStatus = statusHandler(attempt, answer);
+        
+        this.setState({
+          status: [...this.state.status, roundStatus],
+          matrixHistory: [...this.state.matrixHistory, matrix],
+        });
+        
+        window.alert("Keep trying, you got this.");
       }
+      
     };
 
     const clickHandler = (e) => {
@@ -121,10 +148,14 @@ class Game extends Component {
           status: [...this.state.status, roundStatus],
           win: true,
         });
-      } 
-      
+      }
+
       // Enter clicked, attempt incorrect
-      else if (tagId === "enter-key" && attempts[turn].length === 5 && winState === false) {
+      else if (
+        tagId === "enter-key" &&
+        attempts[turn].length === 5 &&
+        winState === false
+      ) {
         const attempt = attempts[turn].split("");
         const answer = this.state.codle;
 
@@ -143,7 +174,6 @@ class Game extends Component {
       <div className="main">
         <div className="game">
           <Board
-            letters={this.state.letters}
             attempts={this.state.attempts}
             codle={this.state.codle}
             status={this.state.status}
@@ -231,3 +261,5 @@ const evaluateMatrix = (ans, atmpt) => {
 
   return matrix;
 };
+
+const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
