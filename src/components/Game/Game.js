@@ -1,18 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Board from "./Board";
 import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      codle: "error",
       attempts: ["", "", "", "", "", ""],
       status: [],
       turn: 0,
-      codle: "error",
       matrixHistory: [],
       win: false,
     };
@@ -26,14 +26,16 @@ class Game extends React.Component {
       const winState = this.state.win;
       const re = /^[a-z]/;
 
-      if (re.test(e.key) && attempts[turn].length < 5) {
+      // If tile row not filled and valid char keyed
+      if (attempts[turn].length < 5 && re.test(e.key)) {
         this.setState({
           attempts: attempts.map((el, i) => (i === turn ? el + e.key : el)),
           turn: turn,
         });
       }
 
-      if (e.key === "Backspace" && winState === false) {
+      // If no win and backspace keyed
+      if (winState === false && e.key === "Backspace") {
         this.setState({
           attempts: attempts.map((el, i) =>
             i === turn ? el.substring(0, el.length - 1) : el
@@ -42,45 +44,37 @@ class Game extends React.Component {
         });
       }
 
+      // Set win state on enter if...
       if (
-        e.key === "Enter" &&
-        attempts[turn].length === 5 &&
-        attempts[turn] === this.state.codle &&
-        this.state.status.length === this.state.turn &&
-        winState === false
+        e.key === "Enter" && // Enter keyed
+        attempts[turn].length === 5 && // Tile row is full
+        attempts[turn] === this.state.codle && // Attempt matches today's codle
+        winState === false // Player hasn't already won
       ) {
+        const attempt = attempts[turn].split("");
+        const answer = this.state.codle;
+
+        const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = new Array(5).fill("-correct");
 
         this.setState({
           status: [...this.state.status, roundStatus],
           win: true,
+          matrixHistory: [...this.state.matrixHistory, matrix],
         });
-      } else if (
-        e.key === "Enter" &&
-        attempts[turn].length === 5 &&
-        winState === false
-      ) {
+
+        // If enter key and wrong attempt
+      } else if (e.key === "Enter" && attempts[turn].length === 5 && winState === false) {
         const attempt = attempts[turn].split("");
         const answer = this.state.codle;
 
-        const matrix = constructMatrix(answer, attempt);
-
-        matrix.forEach((row, i) => {
-          if (i > 0) {
-            row.forEach((el, j) => {
-              if (matrix[0][j] === matrix[i][0]) {
-                matrix[i][j] = 1;
-              }
-            });
-          }
-        });
-
-        this.state.matrixHistory.push(matrix); // convert this to a setState() function; editing state this way feels like an anti-pattern
+        const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = statusHandler(attempt, answer);
 
         this.setState({
           status: [...this.state.status, roundStatus],
           turn: turn + 1,
+          matrixHistory: [...this.state.matrixHistory, matrix],
         });
       }
     };
@@ -89,12 +83,8 @@ class Game extends React.Component {
       const turn = this.state.turn;
       const newChar = e.target.innerHTML;
       const tagId = e.target.id;
-
-      let attempts = this.state.attempts;
-
-      if (attempts[turn] === this.state.codle) {
-        win = true;
-      }
+      const winState = this.state.win;
+      const attempts = this.state.attempts;
 
       if (
         newChar.length === 1 &&
@@ -109,7 +99,7 @@ class Game extends React.Component {
         });
       }
 
-      if (tagId === "bck-key" && !win) {
+      if (tagId === "bck-key" && winState === false) {
         this.setState({
           attempts: attempts.map((el, i) =>
             i === turn ? el.substring(0, el.length - 1) : el
@@ -118,43 +108,33 @@ class Game extends React.Component {
         });
       }
 
+      // Enter clicked, attempt correct...
       if (
         tagId === "enter-key" &&
-        attempts[turn].length === 5 &&
-        win &&
-        this.state.status.length === this.state.turn
+        attempts[turn].length === 5 && // Tile row is full
+        attempts[turn] === this.state.codle && // Attempt matches today's codle
+        winState === false // Player hasn't already won
       ) {
-        const roundStatus = [
-          "-correct",
-          "-correct",
-          "-correct",
-          "-correct",
-          "-correct",
-        ];
+        const roundStatus = new Array(5).fill("-correct");
+
         this.setState({
           status: [...this.state.status, roundStatus],
+          win: true,
         });
-      } else if (tagId === "enter-key" && attempts[turn].length === 5 && !win) {
+      } 
+      
+      // Enter clicked, attempt incorrect
+      else if (tagId === "enter-key" && attempts[turn].length === 5 && winState === false) {
         const attempt = attempts[turn].split("");
         const answer = this.state.codle;
 
-        let roundStatus = [];
-
-        attempt.map((char, i) => {
-          if (pool.includes(char) && attempt[i] === answer[i]) {
-            pool.splice(pool.indexOf(char), 1);
-            roundStatus.push("-correct");
-          } else if (pool.includes(char) && attempt[i] !== answer[i]) {
-            pool.splice(pool.indexOf(char), 1);
-            roundStatus.push("-present");
-          } else if (!pool.includes(char)) {
-            roundStatus.push("-incorrect");
-          }
-        });
+        const matrix = evaluateMatrix(answer, attempt);
+        const roundStatus = statusHandler(attempt, answer);
 
         this.setState({
           status: [...this.state.status, roundStatus],
           turn: turn + 1,
+          matrixHistory: [...this.state.matrixHistory, matrix],
         });
       }
     };
@@ -182,13 +162,14 @@ class Game extends React.Component {
 
 export default Game;
 
-// ================================================================
+// ==========================================================
+// ================  HELPER FUNCTIONS  ======================
 
 const statusHandler = (guess, ans) => {
   let statusArr = ["", "", "", "", ""];
 
   let indexArr = [];
-  const charPool = ans.split(""); // move this into the functions, so it's not hard coded
+  const charPool = ans.split("");
 
   // Scan for correctness
   guess.map((char, i) => {
@@ -231,6 +212,22 @@ const constructMatrix = (ans, atmpt) => {
   matrix.unshift(ans.split(""));
   matrix[0].unshift("");
   matrix.forEach((r, i) => (i > 0 ? r.unshift(atmpt[i - 1]) : null));
+
+  return matrix;
+};
+
+const evaluateMatrix = (ans, atmpt) => {
+  const matrix = constructMatrix(ans, atmpt);
+
+  matrix.forEach((row, i) => {
+    if (i > 0) {
+      row.forEach((el, j) => {
+        if (matrix[0][j] === matrix[i][0]) {
+          matrix[i][j] = 1;
+        }
+      });
+    }
+  });
 
   return matrix;
 };
