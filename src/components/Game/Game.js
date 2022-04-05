@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
+
 const FUEL = require('../../vocab-list.json');
 
 class Game extends Component {
@@ -65,7 +66,8 @@ class Game extends Component {
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
 
-        window.alert("Winner! Winner! Veggie Dinner!");
+        handlePlayerData(turn, true);
+        window.alert("Winner! Winner! Veggie Dinner!");  //  replace with function that triggers modal
 
         // If enter key and wrong attempt
       } else if (
@@ -101,7 +103,7 @@ class Game extends Component {
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
         
-        window.alert("Keep trying, you got this.");
+        window.alert("Keep trying, you got this.");  //  replace with function that triggers modal
       }
       
     };
@@ -148,12 +150,15 @@ class Game extends Component {
           status: [...this.state.status, roundStatus],
           win: true,
         });
+
+        window.alert("Winner! Winner! Veggie Dinner!");   // replace with function that triggers modal
       }
 
       // Enter clicked, attempt incorrect
       else if (
         tagId === "enter-key" &&
         attempts[turn].length === 5 &&
+        turn !== 5 &&
         winState === false
       ) {
         const attempt = attempts[turn].split("");
@@ -167,6 +172,24 @@ class Game extends Component {
           turn: turn + 1,
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
+      } else if (
+        tagId === "enter-key" &&
+        attempts[turn].length === 5 &&
+        turn === 5 &&
+        winState === false
+      ) {
+        const attempt = attempts[turn].split("");
+        const answer = this.state.codle;
+
+        const matrix = evaluateMatrix(answer, attempt);
+        const roundStatus = statusHandler(attempt, answer);
+        
+        this.setState({
+          status: [...this.state.status, roundStatus],
+          matrixHistory: [...this.state.matrixHistory, matrix],
+        });
+        
+        window.alert("Keep trying, you got this."); //  replace with function that triggers modal
       }
     };
 
@@ -263,3 +286,41 @@ const evaluateMatrix = (ans, atmpt) => {
 };
 
 const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+const handlePlayerData = (turn, winStatus) => {
+  // check if lifetime stats in localStorage
+  // if not, set it to starting values
+  // if so, pull in and update stats for each game
+  let newPlayer;
+  !!window.localStorage.getItem('lifetime-stats') ? newPlayer = false : newPlayer = true;
+  
+  if (!!newPlayer) {
+    const lifetimeStats = {
+      guesses: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        fail: 0
+      },
+      gamesPlayed: 0,
+      gamesWon: 0,
+      winPercentage: 0,
+      averageGuesses: 0,
+    }
+    // Update stats
+    lifetimeStats.guesses[turn + 1]++;
+    lifetimeStats.gamesPlayed++;
+    if (!!winStatus) { lifetimeStats.gamesWon++; }
+    lifetimeStats.winPercentage = Math.round(lifetimeStats.gamesWon / lifetimeStats.gamesPlayed  * 100);
+
+    console.log("i'm running");
+    const strLifetimeStats = JSON.stringify(lifetimeStats);
+    window.localStorage.setItem('lifetime-stats', strLifetimeStats)
+  } else {
+    // read in and parse JSON string to object and update
+  }
+
+}

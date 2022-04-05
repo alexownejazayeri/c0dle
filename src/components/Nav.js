@@ -47,7 +47,7 @@ const Nav = () => {
           </svg>
         </button>
       </div>
-         <h3>CODLE</h3>
+         <h3>CODE-LE</h3>
       <div className="nav-icons2">
         {/*Stats Icon*/}
         <button className="btn" onClick={() => console.log("future stats action")}>
