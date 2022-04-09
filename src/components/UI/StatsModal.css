@@ -5,7 +5,7 @@ a {
     color: inherit;
 }
 
-.overlay {
+.stats-overlay {
     position: absolute;
     height: 100%;
     width: 100%;

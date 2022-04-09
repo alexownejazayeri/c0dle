@@ -6,16 +6,18 @@ import "./StatsModal.css";
 
 const StatsModal = (props) => {
   const gameData = JSON.parse(window.localStorage.getItem("lifetime-stats"));
+
   const statsToClipboard = () => {
     const text = `CODE-LE Game #${gameData.gamesPlayed}
 Games won: ${gameData.gamesWon}
 Avg. Guesses: ${gameData.averageGuesses}`;
 
     navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
   };
 
   return (
-    <div className="overlay" onClick={props.onClick}>
+    <div className="stats-overlay" onClick={props.onClick}>
       <div className="stats-card">
         <h3>STATISTICS</h3>
         <div className="stats">
