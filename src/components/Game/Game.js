@@ -5,7 +5,6 @@ import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
-
 const FUEL = require('../../vocab-list.json');
 
 class Game extends Component {
@@ -25,7 +24,7 @@ class Game extends Component {
     const keyDownHandler = (e) => {
       let turn = this.state.turn;
       let attempts = this.state.attempts;
-
+      
       const winState = this.state.win;
       const re = /^[a-z]/;
 
@@ -68,6 +67,7 @@ class Game extends Component {
 
         handlePlayerData(turn, true);
         window.alert("Winner! Winner! Veggie Dinner!");  //  replace with function that triggers modal
+        this.props.onGameEnd();
 
         // If enter key and wrong attempt
       } else if (
@@ -102,8 +102,10 @@ class Game extends Component {
           status: [...this.state.status, roundStatus],
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
-        
+
+        handlePlayerData(turn, false);
         window.alert("Keep trying, you got this.");  //  replace with function that triggers modal
+        this.props.onGameEnd();
       }
       
     };
@@ -150,8 +152,9 @@ class Game extends Component {
           status: [...this.state.status, roundStatus],
           win: true,
         });
-
+        handlePlayerData(turn, true);
         window.alert("Winner! Winner! Veggie Dinner!");   // replace with function that triggers modal
+        this.props.onGameEnd();
       }
 
       // Enter clicked, attempt incorrect
@@ -188,8 +191,9 @@ class Game extends Component {
           status: [...this.state.status, roundStatus],
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
-        
+        handlePlayerData(turn, false);
         window.alert("Keep trying, you got this."); //  replace with function that triggers modal
+        this.props.onGameEnd();
       }
     };
 
@@ -288,21 +292,18 @@ const evaluateMatrix = (ans, atmpt) => {
 const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const handlePlayerData = (turn, winStatus) => {
-  // check if lifetime stats in localStorage
-  // if not, set it to starting values
-  // if so, pull in and update stats for each game
   let newPlayer;
   !!window.localStorage.getItem('lifetime-stats') ? newPlayer = false : newPlayer = true;
   
   if (!!newPlayer) {
     const lifetimeStats = {
       guesses: {
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
         fail: 0
       },
       gamesPlayed: 0,
@@ -310,17 +311,39 @@ const handlePlayerData = (turn, winStatus) => {
       winPercentage: 0,
       averageGuesses: 0,
     }
-    // Update stats
-    lifetimeStats.guesses[turn + 1]++;
+    // Update stats and push to local storage
     lifetimeStats.gamesPlayed++;
-    if (!!winStatus) { lifetimeStats.gamesWon++; }
+    if (!!winStatus) { 
+      lifetimeStats.gamesWon++; 
+      lifetimeStats.guesses[`${turn + 1}`]++;
+      const {'1': ones, '2': twos, '3': threes, '4': fours, '5': fives, '6': sixes} = lifetimeStats.guesses;
+      lifetimeStats.averageGuesses = Math.round((ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) / lifetimeStats.gamesWon);
+    } else {
+      lifetimeStats.guesses['fail']++;
+    }
+    
     lifetimeStats.winPercentage = Math.round(lifetimeStats.gamesWon / lifetimeStats.gamesPlayed  * 100);
 
-    console.log("i'm running");
     const strLifetimeStats = JSON.stringify(lifetimeStats);
-    window.localStorage.setItem('lifetime-stats', strLifetimeStats)
+    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
   } else {
     // read in and parse JSON string to object and update
+    const lifetimeStats = JSON.parse(window.localStorage.getItem('lifetime-stats'));
+    
+    // Update stats and push to local storage
+    lifetimeStats.gamesPlayed++;
+    if (!!winStatus) { 
+      lifetimeStats.gamesWon++; 
+      lifetimeStats.guesses[`${turn  + 1}`]++;
+      const {'1': ones, '2': twos, '3': threes, '4': fours, '5': fives, '6': sixes} = lifetimeStats.guesses;
+      lifetimeStats.averageGuesses = Math.round((ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) / lifetimeStats.gamesWon);
+    } else {
+      lifetimeStats.guesses['fail']++;
+    }
+    
+    lifetimeStats.winPercentage = Math.round(lifetimeStats.gamesWon / lifetimeStats.gamesPlayed * 100);
+    
+    const strLifetimeStats = JSON.stringify(lifetimeStats);
+    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
   }
-
 }

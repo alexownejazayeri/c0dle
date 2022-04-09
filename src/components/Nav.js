@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 
 import './Nav.css';
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div className="nav">
       <div className="nav-icons1">
         {/* Hamburger Menu SVG */}
-        <button className="btn" onClick={() => console.log("Future hamburger action")}>
+        <button className="btn" onClick={() => alert("Working on this hamburger!")}>
           <svg
             width="24"
             height="17"
@@ -31,7 +31,7 @@ const Nav = () => {
           </svg>
         </button>
         {/*Info Icon*/}
-        <button className="btn" onClick={() => console.log("Future info action")}>
+        <button className="btn" onClick={() => alert("Working on this info action!")}>
           <svg
             width="24"
             height="28"
@@ -50,7 +50,7 @@ const Nav = () => {
          <h3>CODE-LE</h3>
       <div className="nav-icons2">
         {/*Stats Icon*/}
-        <button className="btn" onClick={() => console.log("future stats action")}>
+        <button className="btn" onClick={props.onClickStats}>
           <svg
             width="25"
             height="24"
@@ -78,7 +78,7 @@ const Nav = () => {
           </svg>
         </button>
         {/*Settings Cog*/}
-        <button className="btn" onClick={() => console.log('future settings action')}>
+        <button className="btn" onClick={() => alert('Working on adding settings!')}>
           <svg
             width="24"
             height="24"
