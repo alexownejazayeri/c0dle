@@ -31,7 +31,7 @@ const Nav = (props) => {
           </svg>
         </button>
         {/*Info Icon*/}
-        <button className="btn" onClick={() => alert("Working on this info action!")}>
+        <button className="btn" onClick={props.onClickHelp}>
           <svg
             width="24"
             height="28"
@@ -78,7 +78,7 @@ const Nav = (props) => {
           </svg>
         </button>
         {/*Settings Cog*/}
-        <button className="btn" onClick={() => alert('Working on adding settings!')}>
+        <button className="btn" onClick={props.onClickSettings}>
           <svg
             width="24"
             height="24"

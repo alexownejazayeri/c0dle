@@ -1,13 +1,11 @@
 import React from "react";
-
-import Row from "./Row";
 import Tile from "./Tile";
 
 import "./HelpModal.css";
 
-const HelpModal = () => {
+const HelpModal = (props) => {
   return (
-    <div className="help-overlay">
+    <div className="help-overlay" onClick={props.onClick}>
       <div className="help-modal">
         <h1>👾 HOW TO PLAY 👾</h1>
         <p>
@@ -59,7 +57,7 @@ const HelpModal = () => {
         The letter 'A' isn't in the word.
         </div>
         <hr></hr>
-      <p>Unlike WORDLE, you can play CODE-LE as many times a day as you want since the point is to improve on your programminig vocab.</p>
+      <p>Unlike WORDLE, you can play CODE-LE as many times a day as you want. The goal is to make learning programming vocab fun!</p>
       </div>
     </div>
   );

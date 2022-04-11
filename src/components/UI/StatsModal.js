@@ -1,5 +1,4 @@
 import React from "react";
-
 import StatsChart from "./StatsChart";
 
 import "./StatsModal.css";
@@ -15,7 +14,7 @@ Avg. Guesses: ${gameData.averageGuesses}`;
     navigator.clipboard.writeText(text);
     alert("Copied to clipboard!");
   };
-
+  
   return (
     <div className="stats-overlay" onClick={props.onClick}>
       <div className="stats-card">

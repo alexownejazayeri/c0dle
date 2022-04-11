@@ -3,34 +3,42 @@ import ReactDOM from "react-dom";
 
 import Game from "./components/Game/Game";
 import Nav from "./components/Nav";
-import Card from './components/UI/Card';
+import Card from "./components/UI/Card";
 import StatsModal from "./components/UI/StatsModal";
 import HelpModal from "./components/UI/HelpModal";
+import SettingsModal from "./components/UI/SettingsModal";
 
 import "./index.css";
 
 const App = () => {
   const [statsModalVisible, setStatsModalVisible] = useState(false);
-  const [helpModalVisible, setHelpModalVisible] = useState(true); // change this to false once developed
+  const [helpModalVisible, setHelpModalVisible] = useState(false);
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
+
   const statsModalHandler = () => {
     setStatsModalVisible(!statsModalVisible);
-  }
+  };
 
   const helpModalHandler = () => {
     setHelpModalVisible(!helpModalVisible);
-  }
+  };
+
+  const settingsModalHandler = () => {
+    setSettingsModalVisible(!settingsModalVisible);
+  };
 
   return (
-      <div>
-      {statsModalVisible && <StatsModal onClick={statsModalHandler}/>}
+    <div>
+      {statsModalVisible && <StatsModal onClick={statsModalHandler} />}
       {helpModalVisible && <HelpModal onClick={helpModalHandler} />}
-      <Card >
-          <Nav onClickStats={statsModalHandler}/>
-          <Game onGameEnd={statsModalHandler}/>
-        </Card>
-      </div>
-    );
-}
+      {settingsModalVisible && <SettingsModal onClick={settingsModalHandler} />}
+      <Card>
+        <Nav onClickStats={statsModalHandler} onClickHelp={helpModalHandler} onClickSettings={settingsModalHandler}/>
+        <Game onGameEnd={statsModalHandler} />
+      </Card>
+    </div>
+  );
+};
 
 // ================================================
 ReactDOM.render(<App />, document.getElementById("root"));
