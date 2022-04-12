@@ -12,7 +12,7 @@ const StatsModal = (props) => {
 Games won: ${gameData.gamesWon}
 Avg. Guesses: ${gameData.averageGuesses}`;
     
-    navigator.clipboard.writeText(text);
+    window.navigator.clipboard.writeText(text);
   };
 
   return (
