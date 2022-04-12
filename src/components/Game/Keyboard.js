@@ -55,9 +55,9 @@ const Keyboard = (props) => {
                 answerIndicesArr = round[0]
                   .map((letter, i) => (letter === lowerChar ? i : null))
                   .filter((el) => typeof el === "number");
-                !repeatCharAttemptedIndices.includes(j)
+                /* !repeatCharAttemptedIndices.includes(j)
                   ? repeatCharAttemptedIndices.push(j)
-                  : null;
+                  : null; */
               }
             }
           });
