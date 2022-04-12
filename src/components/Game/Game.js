@@ -28,6 +28,7 @@ class Game extends Component {
       let turn = this.state.turn;
       let attempts = this.state.attempts;
 
+
       const winState = this.state.win;
       const re = /^[a-z]/;
 
@@ -49,8 +50,11 @@ class Game extends Component {
         });
       }
 
+      if (e.key === "Enter" && !FUEL.includes(attempts[turn])) {
+        alert('Invalid guess.');
+      }
       // Set win state on enter if...
-      if (
+      else if (
         e.key === "Enter" && // Enter keyed
         attempts[turn].length === 5 && // Tile row is full
         attempts[turn] === this.state.codle && // Attempt matches today's codle

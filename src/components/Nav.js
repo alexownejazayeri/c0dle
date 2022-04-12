@@ -7,7 +7,7 @@ const Nav = (props) => {
     <div className="nav">
       <div className="nav-icons1">
         {/* Hamburger Menu SVG */}
-        <button className="btn" onClick={() => alert("Working on this hamburger!")}>
+        <button className="btn" onClick={props.onBobby}>
           <svg
             width="24"
             height="17"

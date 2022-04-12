@@ -1,0 +1,29 @@
+h2 {
+    margin: 5px;
+}
+
+.hamburger {
+    position: absolute;
+    margin-top: 50px;
+    left: 0;
+    height: 85vh;
+    width: 375px;
+    background-color: rgba(243, 253, 255, 0.924);
+    overflow-y: hidden;
+    padding: 10px;
+    border-radius: 15px;
+    color: rgb(91, 91, 91);
+    text-align: left;
+    border-top-left-radius: 0px;
+}
+
+.impossible-patty {
+    text-align: left;
+    margin: 10px;
+}
+
+.ham-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
