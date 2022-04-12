@@ -5,26 +5,29 @@ import Keyboard from "./Keyboard";
 
 import "./Game.css";
 
-const FUEL = require('../../vocab-list.json');
+const FUEL = require("../../vocab-list.json");
 
 class Game extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = gameSaveHandler();
+  }
+
+  render() {
+
+    const newGameHandler = ( ) => this.setState({
       codle: getRandomVocab(FUEL),
       attempts: ["", "", "", "", "", ""],
       status: [],
       turn: 0,
       matrixHistory: [],
       win: false,
-    };
-  }
-  
-  render() {
+    });
+
     const keyDownHandler = (e) => {
       let turn = this.state.turn;
       let attempts = this.state.attempts;
-      
+
       const winState = this.state.win;
       const re = /^[a-z]/;
 
@@ -66,8 +69,8 @@ class Game extends Component {
         });
 
         handlePlayerData(turn, true);
-        window.alert("Winner! Winner! Veggie Dinner!");  //  replace with function that triggers modal
-        this.props.onGameEnd();
+        window.alert("Winner! Winner! Veggie Dinner!"); //  replace with function that triggers modal
+        this.props.onGameEnd(); // Shows stats modal on game end
 
         // If enter key and wrong attempt
       } else if (
@@ -81,6 +84,7 @@ class Game extends Component {
 
         const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = statusHandler(attempt, answer);
+
         this.setState({
           status: [...this.state.status, roundStatus],
           turn: turn + 1,
@@ -97,17 +101,16 @@ class Game extends Component {
 
         const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = statusHandler(attempt, answer);
-        
+
         this.setState({
           status: [...this.state.status, roundStatus],
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
 
         handlePlayerData(turn, false);
-        window.alert("Keep trying, you got this.");  //  replace with function that triggers modal
-        this.props.onGameEnd();
+        window.alert("Keep trying, you got this."); //  replace with function that triggers modal
+        this.props.onGameEnd(); // Shows stats modal on game end
       }
-      
     };
 
     const clickHandler = (e) => {
@@ -153,8 +156,8 @@ class Game extends Component {
           win: true,
         });
         handlePlayerData(turn, true);
-        window.alert("Winner! Winner! Veggie Dinner!");   // replace with function that triggers modal
-        this.props.onGameEnd();
+        window.alert("Winner! Winner! Veggie Dinner!"); // replace with function that triggers modal
+        this.props.onGameEnd(); // Shows stats modal on game end
       }
 
       // Enter clicked, attempt incorrect
@@ -186,20 +189,23 @@ class Game extends Component {
 
         const matrix = evaluateMatrix(answer, attempt);
         const roundStatus = statusHandler(attempt, answer);
-        
+
         this.setState({
           status: [...this.state.status, roundStatus],
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
         handlePlayerData(turn, false);
-        window.alert("Keep trying, you got this."); //  replace with function that triggers modal
-        this.props.onGameEnd();
+        window.alert("Keep trying, you got this."); // replace with function that triggers modal
+        this.props.onGameEnd(); // Shows stats modal on game end
       }
     };
+
+    window.localStorage.setItem("game-state", JSON.stringify(this.state));
 
     return (
       <div className="main">
         <div className="game">
+          <button className="new-game-btn" onClick={newGameHandler}>New Game</button>
           <Board
             attempts={this.state.attempts}
             codle={this.state.codle}
@@ -221,6 +227,8 @@ export default Game;
 
 // ==========================================================
 // ================  HELPER FUNCTIONS  ======================
+
+const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const statusHandler = (guess, ans) => {
   let statusArr = ["", "", "", "", ""];
@@ -289,61 +297,107 @@ const evaluateMatrix = (ans, atmpt) => {
   return matrix;
 };
 
-const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
 const handlePlayerData = (turn, winStatus) => {
   let newPlayer;
-  !!window.localStorage.getItem('lifetime-stats') ? newPlayer = false : newPlayer = true;
-  
+  !!window.localStorage.getItem("lifetime-stats")
+    ? (newPlayer = false)
+    : (newPlayer = true);
+
   if (!!newPlayer) {
     const lifetimeStats = {
       guesses: {
-        '1': 0,
-        '2': 0,
-        '3': 0,
-        '4': 0,
-        '5': 0,
-        '6': 0,
-        fail: 0
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        fail: 0,
       },
       gamesPlayed: 0,
       gamesWon: 0,
       winPercentage: 0,
       averageGuesses: 0,
-    }
+    };
     // Update stats and push to local storage
     lifetimeStats.gamesPlayed++;
-    if (!!winStatus) { 
-      lifetimeStats.gamesWon++; 
+    if (!!winStatus) {
+      lifetimeStats.gamesWon++;
       lifetimeStats.guesses[`${turn + 1}`]++;
-      const {'1': ones, '2': twos, '3': threes, '4': fours, '5': fives, '6': sixes} = lifetimeStats.guesses;
-      lifetimeStats.averageGuesses = Math.round((ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) / lifetimeStats.gamesWon);
+      const {
+        1: ones,
+        2: twos,
+        3: threes,
+        4: fours,
+        5: fives,
+        6: sixes,
+      } = lifetimeStats.guesses;
+      lifetimeStats.averageGuesses = Math.round(
+        (ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) /
+          lifetimeStats.gamesWon
+      );
     } else {
-      lifetimeStats.guesses['fail']++;
+      lifetimeStats.guesses["fail"]++;
     }
-    
-    lifetimeStats.winPercentage = Math.round(lifetimeStats.gamesWon / lifetimeStats.gamesPlayed  * 100);
+
+    lifetimeStats.winPercentage = Math.round(
+      (lifetimeStats.gamesWon / lifetimeStats.gamesPlayed) * 100
+    );
 
     const strLifetimeStats = JSON.stringify(lifetimeStats);
-    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
+    window.localStorage.setItem("lifetime-stats", strLifetimeStats);
   } else {
     // read in and parse JSON string to object and update
-    const lifetimeStats = JSON.parse(window.localStorage.getItem('lifetime-stats'));
-    
+    const lifetimeStats = JSON.parse(
+      window.localStorage.getItem("lifetime-stats")
+    );
+
     // Update stats and push to local storage
     lifetimeStats.gamesPlayed++;
-    if (!!winStatus) { 
-      lifetimeStats.gamesWon++; 
-      lifetimeStats.guesses[`${turn  + 1}`]++;
-      const {'1': ones, '2': twos, '3': threes, '4': fours, '5': fives, '6': sixes} = lifetimeStats.guesses;
-      lifetimeStats.averageGuesses = Math.round((ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) / lifetimeStats.gamesWon);
+    if (!!winStatus) {
+      lifetimeStats.gamesWon++;
+      lifetimeStats.guesses[`${turn + 1}`]++;
+      const {
+        1: ones,
+        2: twos,
+        3: threes,
+        4: fours,
+        5: fives,
+        6: sixes,
+      } = lifetimeStats.guesses;
+      lifetimeStats.averageGuesses = Math.round(
+        (ones * 1 + twos * 2 + threes * 3 + fours * 4 + fives * 5 + sixes * 6) /
+          lifetimeStats.gamesWon
+      );
     } else {
-      lifetimeStats.guesses['fail']++;
+      lifetimeStats.guesses["fail"]++;
     }
-    
-    lifetimeStats.winPercentage = Math.round(lifetimeStats.gamesWon / lifetimeStats.gamesPlayed * 100);
-    
+
+    lifetimeStats.winPercentage = Math.round(
+      (lifetimeStats.gamesWon / lifetimeStats.gamesPlayed) * 100
+    );
+
     const strLifetimeStats = JSON.stringify(lifetimeStats);
-    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
+    window.localStorage.setItem("lifetime-stats", strLifetimeStats);
   }
-}
+};
+
+const gameSaveHandler = () => {
+  let newGame;
+  !!window.localStorage.getItem("game-state")
+    ? (newGame = false)
+    : (newGame = true);
+
+  if (!!newGame) {
+    return {
+      codle: getRandomVocab(FUEL),
+      attempts: ["", "", "", "", "", ""],
+      status: [],
+      turn: 0,
+      matrixHistory: [],
+      win: false,
+    };
+  } else if (!newGame) {
+    return JSON.parse(window.localStorage.getItem("game-state"));
+  }
+};

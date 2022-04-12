@@ -88,3 +88,9 @@ a {
 .stats-btn:hover {
     background-color: rgba(103, 223, 47, 0.935);
 }
+
+.close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}

@@ -33,3 +33,13 @@ a {
 a:hover {
     color: greenyellow;
 }
+
+.close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+svg {
+    cursor: pointer;
+}
