@@ -104,7 +104,7 @@ const Keyboard = (props) => {
   useEffect(() => {
     window.addEventListener("keydown", props.onKeyDown);
     return () => window.removeEventListener("keydown", props.onKeyDown);
-  }, []);
+  });
 
   return (
     <div className="keyboard">

@@ -237,7 +237,7 @@ const statusHandler = (guess, ans) => {
   const charPool = ans.split("");
 
   // Scan for correctness
-  guess.map((char, i) => {
+  guess.forEach((char, i) => {
     if (charPool.includes(char) && guess[i] === ans[i]) {
       statusArr[i] = "-correct";
       charPool.splice(charPool.indexOf(char), 1);
@@ -246,7 +246,7 @@ const statusHandler = (guess, ans) => {
   });
 
   // Scan for presence
-  guess.map((char, i) => {
+  guess.forEach((char, i) => {
     if (
       !indexArr.includes(i) &&
       charPool.includes(char) &&
@@ -259,7 +259,7 @@ const statusHandler = (guess, ans) => {
   });
 
   // Scan for incorrectness
-  guess.map((char, i) => {
+  guess.forEach((char, i) => {
     if (!indexArr.includes(i) && !charPool.includes(char)) {
       statusArr[i] = "-incorrect";
       charPool.splice(charPool.indexOf(char), 1);

@@ -26,7 +26,7 @@ const SettingsModal = (props) => {
         </div>
         <div className="setting">
           <h3>LEAVE FEEDBACK</h3>
-          <a href="mailto: alex@growthmedium.io" target="_blank">
+          <a href="mailto: alex@growthmedium.io" target="_blank" rel="noreferrer">
             EMAIL
           </a>
         </div>
@@ -34,7 +34,7 @@ const SettingsModal = (props) => {
         <br></br>
         <div className="setting">
           <h3>PORTFOLIO</h3>
-          <a href="https://alxo.io/" target="_blank">
+          <a href="https://alxo.io/" target="_blank" rel="noreferrer">
             ALXO.IO
           </a>
         </div>
@@ -42,7 +42,7 @@ const SettingsModal = (props) => {
         <br></br>
         <div className="setting">
           <h3>GITHUB</h3>
-          <a href="https://github.com/alexownejazayeri" target="_blank">
+          <a href="https://github.com/alexownejazayeri" target="_blank" rel="noreferrer">
             GIT OUTTA HERE
           </a>
         </div>
@@ -50,7 +50,7 @@ const SettingsModal = (props) => {
         <br></br>
         <div className="setting">
           <h3>TWITTER</h3>
-          <a href="https://twitter.com/alexjazayeri" target="_blank">
+          <a href="https://twitter.com/alexjazayeri" target="_blank" rel="noreferrer">
             TWEET ME NICE
           </a>
         </div>
