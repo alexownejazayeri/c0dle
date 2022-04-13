@@ -146,8 +146,11 @@ class Game extends Component {
         });
       }
 
+      if (tagId === "enter-key" && !FUEL.includes(attempts[turn])) {
+        alert('Invalid guess.');
+      }
       // Enter clicked, attempt correct...
-      if (
+      else if (
         tagId === "enter-key" &&
         attempts[turn].length === 5 && // Tile row is full
         attempts[turn] === this.state.codle && // Attempt matches today's codle
