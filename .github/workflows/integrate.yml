@@ -2,7 +2,7 @@ name: Node Continuous Integration
 
 on:
   pull_request:
-    branches: [ production ]
+    branches: [ master ]
   
 jobs:
   test_pull_request:
