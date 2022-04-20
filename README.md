@@ -62,7 +62,6 @@ npm start
 
 ## Managing Game State
 
-
             Can use a 5x5 grid here to keep track of singles.
             Might need a score or something to track repeat characters?
 
