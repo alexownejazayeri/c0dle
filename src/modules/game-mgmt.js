@@ -174,4 +174,4 @@ const gameSaveHandler = (wordList) => {
   }
 };
 
-export { getRandomVocab, statusHandler, evaluateMatrix, handlePlayerData, gameSaveHandler }
+module.exports = statusHandler;
