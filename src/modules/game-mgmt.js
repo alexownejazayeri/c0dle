@@ -173,5 +173,11 @@ const gameSaveHandler = (wordList) => {
     return JSON.parse(window.localStorage.getItem("game-state"));
   }
 };
-
-module.exports = statusHandler;
+export {
+  getRandomVocab,
+  statusHandler,
+  constructMatrix,
+  evaluateMatrix,
+  handlePlayerData,
+  gameSaveHandler,
+};

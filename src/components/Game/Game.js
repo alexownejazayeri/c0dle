@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getRandomVocab, statusHandler, evaluateMatrix, handlePlayerData, gameSaveHandler } from '../../modules/game-mgmt';
+import { getRandomVocab, statusHandler, evaluateMatrix, handlePlayerData, gameSaveHandler } from "../../modules/game-mgmt";
 
 import Board from "./Board";
 import Keyboard from "./Keyboard";
@@ -28,7 +28,6 @@ class Game extends Component {
     const keyDownHandler = (e) => {
       let turn = this.state.turn;
       let attempts = this.state.attempts;
-
 
       const winState = this.state.win;
       const re = /^[a-z]/;
