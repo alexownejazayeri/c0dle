@@ -57,7 +57,7 @@ class Game extends Component {
       else if (
         e.key === "Enter" && // Enter keyed
         attempts[turn].length === 5 && // Tile row is full
-        attempts[turn] === this.state.codle && // Attempt matches today's codle
+        attempts[turn] === this.state.codle && // Attempt matches today's code-le
         winState === false // Player hasn't already won
       ) {
         const attempt = attempts[turn].split("");
@@ -123,7 +123,7 @@ class Game extends Component {
       const tagId = e.target.id;
       const winState = this.state.win;
       const attempts = this.state.attempts;
-
+      
       if (
         newChar.length === 1 &&
         tagId !== "bck-key" &&
@@ -153,7 +153,7 @@ class Game extends Component {
       else if (
         tagId === "enter-key" &&
         attempts[turn].length === 5 && // Tile row is full
-        attempts[turn] === this.state.codle && // Attempt matches today's codle
+        attempts[turn] === this.state.codle && // Attempt matches today's code-le
         winState === false // Player hasn't already won
       ) {
         const roundStatus = new Array(5).fill("-correct");

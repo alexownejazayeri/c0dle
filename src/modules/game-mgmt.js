@@ -173,6 +173,7 @@ const gameSaveHandler = (wordList) => {
     return JSON.parse(window.localStorage.getItem("game-state"));
   }
 };
+
 export {
   getRandomVocab,
   statusHandler,

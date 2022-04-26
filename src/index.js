@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import Game from "./components/Game/Game";
-import Nav from "./components/Nav";
+import Nav from "./components/UI/Nav";
 import Card from "./components/UI/Card";
 import StatsModal from "./components/UI/StatsModal/StatsModal";
 import HelpModal from "./components/UI/HelpModal";
