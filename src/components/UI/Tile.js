@@ -9,6 +9,6 @@ const Tile = (props) => {
             {props.children}
         </div>
     );
-}
+};
 
 export default Tile;

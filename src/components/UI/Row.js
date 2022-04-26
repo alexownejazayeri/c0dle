@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import Tile from "./Tile";
+import Tile from './Tile';
 
-import "./Row.css";
+import './Row.css';
 
 const Row = (props) => {
   const tileRender = (str) => {
-    let tileArr = Array(5).fill("");
+    let tileArr = Array(5).fill('');
     const rowState = props.status;
 
     return tileArr.map((el, i) => (
@@ -23,7 +23,7 @@ const Row = (props) => {
     ));
   };
 
-  return <div className="tile-row">{tileRender(props.word)}</div>;
+  return <div className='tile-row'>{tileRender(props.word)}</div>;
 };
 
 export default Row;

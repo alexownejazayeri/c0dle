@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import Async from "./Async";
+import { render, screen } from '@testing-library/react';
+import Async from './Async';
 
 // This version not ideal because will
 // a) hammer network with requests since testing all the time throughout the SDLC
@@ -13,11 +13,11 @@ import Async from "./Async";
 // Also! This works well for testing localStorage where you don't want to trigger changes in the actual storage
 // Jest has a tool for this
 
-describe("Async component", () => {
-  test("renders posts if request succeeds", async () => {
+describe('Async component', () => {
+  test('renders posts if request succeeds', async () => {
     window.fetch = jest.fn();
     window.fetch.mockResolvedValueOnce({
-      json: async () => [{ id: 'p1', title: "First post" }],
+      json: async () => [{ id: 'p1', title: 'First post' }],
     });
 
     //Arrange

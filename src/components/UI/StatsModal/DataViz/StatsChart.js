@@ -10,7 +10,7 @@ import {
     Legend,
   } from 'chart.js';
   import { Bar } from 'react-chartjs-2';
-    
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -57,9 +57,9 @@ const StatsChart = (props) => {
           },
         },
       };
-      
+
       const labels = ['1', '2', '3', '4', '5', '6'];
-      
+
       const data = {
         labels,
         datasets: [
@@ -72,7 +72,7 @@ const StatsChart = (props) => {
           },
         ],
       };
-    
+
     return(
         <React.Fragment>
             <Bar
@@ -82,6 +82,6 @@ const StatsChart = (props) => {
         />
         </React.Fragment>
     );
-}
+};
 
 export default StatsChart;

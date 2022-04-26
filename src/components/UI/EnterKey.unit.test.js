@@ -11,8 +11,8 @@ describe('Enter key component', () => {
 
     test('button is enabled', () => {
         render(<EnterKey />);
-        
+
         const button = screen.getByRole(/button/i);
         expect(button).toBeEnabled;
-    })
-})
+    });
+});
