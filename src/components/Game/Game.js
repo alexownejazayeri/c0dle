@@ -6,7 +6,7 @@ import Keyboard from './Keyboard';
 
 import './Game.css';
 
-const FUEL = require('../../vocab-list.json');
+import FUEL from '../../vocab-list';
 
 class Game extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Game extends Component {
 
   render() {
 
-    const newGameHandler = ( ) => this.setState({
+    const newGameHandler = () => this.setState({
       codle: getRandomVocab(FUEL),
       attempts: ['', '', '', '', '', ''],
       status: [],
