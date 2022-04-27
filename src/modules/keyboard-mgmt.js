@@ -1,9 +1,7 @@
 // ============================= KEYBOARD HELPER FUNCTIONS ===================================
 
 const getAllAttemptedChars = (gState) => {
-  const attempted = gState.map((roundState, i) =>
-    roundState.map((el, j) => el[0]).filter((el) => el !== "")
-  );
+  const attempted = gState.map((roundState) => roundState.map((el) => el[0]).filter((el) => el !== ''));
 
   const allAttemptedChars = [];
   attempted.forEach((el) => el.forEach((char) => allAttemptedChars.push(char)));
@@ -13,14 +11,14 @@ const getAllAttemptedChars = (gState) => {
 
 // Keyboard generator helpers
 const rowScore = (attemptCharRow) => {
-  const nums = attemptCharRow.filter((el) => typeof el === "number");
+  const nums = attemptCharRow.filter((el) => typeof el === 'number');
   return nums.reduce((prev, curr) => prev + curr);
 };
 
 const keyGenerator = (keyArr, attemptArr, onClick, history) => {
   return keyArr.map((char) => {
     const lowerChar = char.toLowerCase();
-    let style = "";
+    let style = '';
     let charStyles = [];
     let repeatCharAttemptedIndices = [];
     let answerIndicesArr = [];
@@ -35,21 +33,21 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) => {
 
             // If it never occurs, it's wrong
             if (charNum === 0) {
-              style = "-incorrect";
+              style = '-incorrect';
             }
 
             // If it only occurs once, check for positional correctness
             if (charNum === 1) {
               round.indexOf(attemptRow) === round[0].indexOf(lowerChar)
-                ? charStyles.push("-correct")
-                : charStyles.push("-present");
+                ? charStyles.push('-correct')
+                : charStyles.push('-present');
             }
 
             // If it occurs more than once, check the same for every occurence
             if (charNum > 1) {
               answerIndicesArr = round[0]
                 .map((letter, i) => (letter === lowerChar ? i : null))
-                .filter((el) => typeof el === "number");
+                .filter((el) => typeof el === 'number');
               if (!repeatCharAttemptedIndices.includes(j)) {
                 repeatCharAttemptedIndices.push(j);
               }
@@ -58,35 +56,24 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) => {
         });
       });
 
-      const repeatCharBools = answerIndicesArr.map((el) =>
-        repeatCharAttemptedIndices.includes(el)
-      );
+      const repeatCharBools = answerIndicesArr.map((el) => repeatCharAttemptedIndices.includes(el));
 
       if (repeatCharBools[0]) {
-        const repeatCharScore = repeatCharBools.reduce(
-          (prev, curr) => prev + curr
-        );
-        repeatCharScore === answerIndicesArr.length
-          ? charStyles.push("-correct")
-          : charStyles.push("-present");
+        const repeatCharScore = repeatCharBools.reduce((prev, curr) => prev + curr);
+        repeatCharScore === answerIndicesArr.length ? charStyles.push('-correct') : charStyles.push('-present');
       }
 
-      if (charStyles.includes("-correct")) {
-        style = "-correct";
+      if (charStyles.includes('-correct')) {
+        style = '-correct';
       }
 
-      if (charStyles.includes("-present") && !charStyles.includes("-correct")) {
-        style = "-present";
+      if (charStyles.includes('-present') && !charStyles.includes('-correct')) {
+        style = '-present';
       }
     }
 
     return (
-      <button
-        key={char}
-        id={`${char}-key`}
-        className={`letter-key${style} btn`}
-        onClick={onClick}
-      >
+      <button key={char} id={`${char}-key`} className={`letter-key${style} btn`} onClick={onClick}>
         {char}
       </button>
     );

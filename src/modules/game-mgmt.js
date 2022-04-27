@@ -3,15 +3,15 @@
 const getRandomVocab = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const statusHandler = (guess, ans) => {
-  let statusArr = ["", "", "", "", ""];
+  let statusArr = ['', '', '', '', ''];
 
   let indexArr = [];
-  const charPool = ans.split("");
+  const charPool = ans.split('');
 
   // Scan for correctness
   guess.forEach((char, i) => {
     if (charPool.includes(char) && guess[i] === ans[i]) {
-      statusArr[i] = "-correct";
+      statusArr[i] = '-correct';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
@@ -24,7 +24,7 @@ const statusHandler = (guess, ans) => {
       charPool.includes(char) &&
       guess[i] !== ans[i]
     ) {
-      statusArr[i] = "-present";
+      statusArr[i] = '-present';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
@@ -33,7 +33,7 @@ const statusHandler = (guess, ans) => {
   // Scan for incorrectness
   guess.forEach((char, i) => {
     if (!indexArr.includes(i) && !charPool.includes(char)) {
-      statusArr[i] = "-incorrect";
+      statusArr[i] = '-incorrect';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
@@ -46,8 +46,8 @@ const constructMatrix = (ans, atmpt) => {
   const skeleton = Array(5).fill([]);
   const matrix = skeleton.map(() => [0, 0, 0, 0, 0]);
 
-  matrix.unshift(ans.split(""));
-  matrix[0].unshift("");
+  matrix.unshift(ans.split(''));
+  matrix[0].unshift('');
   matrix.forEach((r, i) => (i > 0 ? r.unshift(atmpt[i - 1]) : null));
 
   return matrix;
@@ -71,11 +71,11 @@ const evaluateMatrix = (ans, atmpt) => {
 
 const handlePlayerData = (turn, winStatus) => {
   let newPlayer;
-  !!window.localStorage.getItem("lifetime-stats")
+  window.localStorage.getItem('lifetime-stats')
     ? (newPlayer = false)
     : (newPlayer = true);
 
-  if (!!newPlayer) {
+  if (newPlayer) {
     const lifetimeStats = {
       guesses: {
         1: 0,
@@ -93,7 +93,7 @@ const handlePlayerData = (turn, winStatus) => {
     };
     // Update stats and push to local storage
     lifetimeStats.gamesPlayed++;
-    if (!!winStatus) {
+    if (winStatus) {
       lifetimeStats.gamesWon++;
       lifetimeStats.guesses[`${turn + 1}`]++;
       const {
@@ -109,7 +109,7 @@ const handlePlayerData = (turn, winStatus) => {
           lifetimeStats.gamesWon
       );
     } else {
-      lifetimeStats.guesses["fail"]++;
+      lifetimeStats.guesses['fail']++;
     }
 
     lifetimeStats.winPercentage = Math.round(
@@ -117,16 +117,16 @@ const handlePlayerData = (turn, winStatus) => {
     );
 
     const strLifetimeStats = JSON.stringify(lifetimeStats);
-    window.localStorage.setItem("lifetime-stats", strLifetimeStats);
+    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
   } else {
     // read in and parse JSON string to object and update
     const lifetimeStats = JSON.parse(
-      window.localStorage.getItem("lifetime-stats")
+      window.localStorage.getItem('lifetime-stats')
     );
 
     // Update stats and push to local storage
     lifetimeStats.gamesPlayed++;
-    if (!!winStatus) {
+    if (winStatus) {
       lifetimeStats.gamesWon++;
       lifetimeStats.guesses[`${turn + 1}`]++;
       const {
@@ -142,7 +142,7 @@ const handlePlayerData = (turn, winStatus) => {
           lifetimeStats.gamesWon
       );
     } else {
-      lifetimeStats.guesses["fail"]++;
+      lifetimeStats.guesses['fail']++;
     }
 
     lifetimeStats.winPercentage = Math.round(
@@ -150,27 +150,27 @@ const handlePlayerData = (turn, winStatus) => {
     );
 
     const strLifetimeStats = JSON.stringify(lifetimeStats);
-    window.localStorage.setItem("lifetime-stats", strLifetimeStats);
+    window.localStorage.setItem('lifetime-stats', strLifetimeStats);
   }
 };
 
 const gameSaveHandler = (wordList) => {
   let newGame;
-  !!window.localStorage.getItem("game-state")
+  window.localStorage.getItem('game-state')
     ? (newGame = false)
     : (newGame = true);
 
-  if (!!newGame) {
+  if (newGame) {
     return {
       codle: getRandomVocab(wordList),
-      attempts: ["", "", "", "", "", ""],
+      attempts: ['', '', '', '', '', ''],
       status: [],
       turn: 0,
       matrixHistory: [],
       win: false,
     };
   } else if (!newGame) {
-    return JSON.parse(window.localStorage.getItem("game-state"));
+    return JSON.parse(window.localStorage.getItem('game-state'));
   }
 };
 

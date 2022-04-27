@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import Row from "../UI/Row";
-import "./Board.css";
+import Row from '../UI/Row';
+import './Board.css';
 
 const Board = (props) => {
   const wordArr = props.attempts;
@@ -14,7 +14,7 @@ const Board = (props) => {
       if (globalState[i]) {
         rowState = globalState[i];
       } else {
-        rowState = new Array(5).fill("");
+        rowState = new Array(5).fill('');
       }
 
       return (
@@ -29,7 +29,7 @@ const Board = (props) => {
       );
     });
 
-  return <div className="game-board">{renderBoard(wordArr)}</div>;
+  return <div className='game-board'>{renderBoard(wordArr)}</div>;
 };
 
 export default Board;
