@@ -32,3 +32,6 @@ rules:
       - 0
     react/react-in-jsx-scope:
       - 0
+    no-console:
+      - error
+      
