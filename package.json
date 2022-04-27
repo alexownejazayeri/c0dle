@@ -50,7 +50,7 @@
     "prettier": "2.6.2"
   },
   "lint-staged": {
-    "*.js": "eslint",
+    "*.js": "eslint .",
     "*.{js,css,md}": "prettier --write"
   }
 }

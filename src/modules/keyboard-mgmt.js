@@ -1,9 +1,7 @@
 // ============================= KEYBOARD HELPER FUNCTIONS ===================================
 
 const getAllAttemptedChars = (gState) => {
-  const attempted = gState.map((roundState, i) =>
-    roundState.map((el, j) => el[0]).filter((el) => el !== '')
-  );
+  const attempted = gState.map((roundState) => roundState.map((el) => el[0]).filter((el) => el !== ''));
 
   const allAttemptedChars = [];
   attempted.forEach((el) => el.forEach((char) => allAttemptedChars.push(char)));
@@ -58,17 +56,11 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) => {
         });
       });
 
-      const repeatCharBools = answerIndicesArr.map((el) =>
-        repeatCharAttemptedIndices.includes(el)
-      );
+      const repeatCharBools = answerIndicesArr.map((el) => repeatCharAttemptedIndices.includes(el));
 
       if (repeatCharBools[0]) {
-        const repeatCharScore = repeatCharBools.reduce(
-          (prev, curr) => prev + curr
-        );
-        repeatCharScore === answerIndicesArr.length
-          ? charStyles.push('-correct')
-          : charStyles.push('-present');
+        const repeatCharScore = repeatCharBools.reduce((prev, curr) => prev + curr);
+        repeatCharScore === answerIndicesArr.length ? charStyles.push('-correct') : charStyles.push('-present');
       }
 
       if (charStyles.includes('-correct')) {
@@ -81,12 +73,7 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) => {
     }
 
     return (
-      <button
-        key={char}
-        id={`${char}-key`}
-        className={`letter-key${style} btn`}
-        onClick={onClick}
-      >
+      <button key={char} id={`${char}-key`} className={`letter-key${style} btn`} onClick={onClick}>
         {char}
       </button>
     );
