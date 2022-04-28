@@ -15,8 +15,8 @@ const rowScore = (attemptCharRow) => {
   return nums.reduce((prev, curr) => prev + curr);
 };
 
-const keyGenerator = (keyArr, attemptArr, onClick, history) => {
-  return keyArr.map((char) => {
+const keyGenerator = (keyArr, attemptArr, onClick, history) =>
+  keyArr.map((char) => {
     const lowerChar = char.toLowerCase();
     let style = '';
     let charStyles = [];
@@ -78,6 +78,5 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) => {
       </button>
     );
   });
-};
 
 export { getAllAttemptedChars, keyGenerator };
