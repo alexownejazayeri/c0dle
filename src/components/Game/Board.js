@@ -17,19 +17,14 @@ const Board = (props) => {
         rowState = new Array(5).fill('');
       }
 
-      return (
-        <Row
-          word={arr[i]}
-          key={i}
-          id={`row-${i}`}
-          codle={props.codle}
-          status={rowState}
-          turn={props.turn}
-        />
-      );
+      return <Row word={arr[i]} key={i} id={`row-${i}`} codle={props.codle} status={rowState} turn={props.turn} />;
     });
 
-  return <div className='game-board'>{renderBoard(wordArr)}</div>;
+  return (
+    <div className="game-board" role="application" aria-label="game-board">
+      {renderBoard(wordArr)}
+    </div>
+  );
 };
 
 export default Board;
