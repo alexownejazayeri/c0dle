@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
-import Game from "./components/Game/Game";
-import Nav from "./components/UI/Nav";
-import Card from "./components/UI/Card";
-import StatsModal from "./components/UI/StatsModal/StatsModal";
-import HelpModal from "./components/UI/HelpModal";
-import SettingsModal from "./components/UI/SettingsModal";
-import Hamburger from "./components/UI/Hamburger";
+import Game from './components/Game/Game';
+import Nav from './components/UI/Nav';
+import Card from './components/UI/Card';
+import StatsModal from './components/UI/StatsModal/StatsModal';
+import HelpModal from './components/UI/HelpModal';
+import SettingsModal from './components/UI/SettingsModal';
+import Hamburger from './components/UI/Hamburger';
 
-import "./index.css";
-import "./components/UI/Hamburger.css";
+import './index.css';
+import './components/UI/Hamburger.css';
 
 const App = () => {
   const [statsModalVisible, setStatsModalVisible] = useState(false);
@@ -32,7 +32,7 @@ const App = () => {
 
   const fryCook = () => {
     setHamburgerVisible(!hamburgerVisible);
-  }
+  };
 
   return (
     <div>
@@ -54,4 +54,4 @@ const App = () => {
 };
 
 // ======================================================
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
