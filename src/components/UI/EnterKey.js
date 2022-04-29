@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './EnterKey.css';
 
 const EnterKey = (props) => (

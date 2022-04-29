@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { getRandomVocab, statusHandler, evaluateMatrix, handlePlayerData, gameSaveHandler } from '../../modules/game-mgmt';
+import {
+  getRandomVocab,
+  statusHandler,
+  evaluateMatrix,
+  handlePlayerData,
+  gameSaveHandler,
+} from '../../modules/game-mgmt';
 
 import Board from './Board';
 import Keyboard from './Keyboard';
@@ -15,15 +21,15 @@ class Game extends Component {
   }
 
   render() {
-
-    const newGameHandler = () => this.setState({
-      codle: getRandomVocab(FUEL),
-      attempts: ['', '', '', '', '', ''],
-      status: [],
-      turn: 0,
-      matrixHistory: [],
-      win: false,
-    });
+    const newGameHandler = () =>
+      this.setState({
+        codle: getRandomVocab(FUEL),
+        attempts: ['', '', '', '', '', ''],
+        status: [],
+        turn: 0,
+        matrixHistory: [],
+        win: false,
+      });
 
     const keyDownHandler = (e) => {
       let turn = this.state.turn;
@@ -43,9 +49,7 @@ class Game extends Component {
       // If no win and backspace keyed
       if (winState === false && e.key === 'Backspace') {
         this.setState({
-          attempts: attempts.map((el, i) =>
-            i === turn ? el.substring(0, el.length - 1) : el
-          ),
+          attempts: attempts.map((el, i) => (i === turn ? el.substring(0, el.length - 1) : el)),
           turn: turn,
         });
       }
@@ -77,12 +81,7 @@ class Game extends Component {
         this.props.onGameEnd(); // Shows stats modal on game end
 
         // If enter key and wrong attempt
-      } else if (
-        e.key === 'Enter' &&
-        attempts[turn].length === 5 &&
-        turn !== 5 &&
-        winState === false
-      ) {
+      } else if (e.key === 'Enter' && attempts[turn].length === 5 && turn !== 5 && winState === false) {
         const attempt = attempts[turn].split('');
         const answer = this.state.codle;
 
@@ -94,12 +93,7 @@ class Game extends Component {
           turn: turn + 1,
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
-      } else if (
-        e.key === 'Enter' &&
-        attempts[turn].length === 5 &&
-        turn === 5 &&
-        winState === false
-      ) {
+      } else if (e.key === 'Enter' && attempts[turn].length === 5 && turn === 5 && winState === false) {
         const attempt = attempts[turn].split('');
         const answer = this.state.codle;
 
@@ -124,24 +118,16 @@ class Game extends Component {
       const winState = this.state.win;
       const attempts = this.state.attempts;
 
-      if (
-        newChar.length === 1 &&
-        tagId !== 'bck-key' &&
-        attempts[turn].length < 5
-      ) {
+      if (newChar.length === 1 && tagId !== 'bck-key' && attempts[turn].length < 5) {
         this.setState({
-          attempts: attempts.map((el, i) =>
-            i === turn ? el + newChar.toLowerCase() : el
-          ),
+          attempts: attempts.map((el, i) => (i === turn ? el + newChar.toLowerCase() : el)),
           turn: turn,
         });
       }
 
       if (tagId === 'bck-key' && winState === false) {
         this.setState({
-          attempts: attempts.map((el, i) =>
-            i === turn ? el.substring(0, el.length - 1) : el
-          ),
+          attempts: attempts.map((el, i) => (i === turn ? el.substring(0, el.length - 1) : el)),
           turn: turn,
         });
       }
@@ -168,12 +154,7 @@ class Game extends Component {
       }
 
       // Enter clicked, attempt incorrect
-      else if (
-        tagId === 'enter-key' &&
-        attempts[turn].length === 5 &&
-        turn !== 5 &&
-        winState === false
-      ) {
+      else if (tagId === 'enter-key' && attempts[turn].length === 5 && turn !== 5 && winState === false) {
         const attempt = attempts[turn].split('');
         const answer = this.state.codle;
 
@@ -185,12 +166,7 @@ class Game extends Component {
           turn: turn + 1,
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
-      } else if (
-        tagId === 'enter-key' &&
-        attempts[turn].length === 5 &&
-        turn === 5 &&
-        winState === false
-      ) {
+      } else if (tagId === 'enter-key' && attempts[turn].length === 5 && turn === 5 && winState === false) {
         const attempt = attempts[turn].split('');
         const answer = this.state.codle;
 
@@ -210,20 +186,18 @@ class Game extends Component {
     window.localStorage.setItem('game-state', JSON.stringify(this.state));
 
     return (
-      <div className='main'>
-        <div className='game'>
-          <button className='new-game-btn' onClick={newGameHandler}>New Game</button>
+      <div className="main">
+        <div className="game">
+          <button className="new-game-btn" onClick={newGameHandler}>
+            New Game
+          </button>
           <Board
             attempts={this.state.attempts}
             codle={this.state.codle}
             status={this.state.status}
             turn={this.state.turn}
           />
-          <Keyboard
-            onClick={clickHandler}
-            onKeyDown={keyDownHandler}
-            globalState={this.state.matrixHistory}
-          />
+          <Keyboard onClick={clickHandler} onKeyDown={keyDownHandler} globalState={this.state.matrixHistory} />
         </div>
       </div>
     );

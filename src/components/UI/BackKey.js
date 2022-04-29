@@ -4,7 +4,7 @@ import './BackKey.css';
 
 const BackKey = (props) => (
   <div className="bck-key">
-    <button id="bck-key" className="btn-svg" onClick={props.onClick}>
+    <button id="bck-key" className="btn-svg" onClick={props.onClick} aria-label="BACK">
       <svg id="bck-key" width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           id="bck-key"

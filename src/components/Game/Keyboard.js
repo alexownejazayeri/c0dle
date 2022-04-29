@@ -29,10 +29,10 @@ const Keyboard = (props) => {
   });
 
   return (
-    <div className='keyboard'>
-      <div className='key-row'>{keyGenerator(keys['row1'], attemptArr, props.onClick, history)}</div>
-      <div className='key-row'>{keyGenerator(keys['row2'], attemptArr, props.onClick, history)}</div>
-      <div className='key-row'>
+    <div className="keyboard" role="application" aria-label="keyboard">
+      <div className="key-row">{keyGenerator(keys['row1'], attemptArr, props.onClick, history)}</div>
+      <div className="key-row">{keyGenerator(keys['row2'], attemptArr, props.onClick, history)}</div>
+      <div className="key-row">
         <EnterKey onClick={props.onClick} />
         {keyGenerator(keys['row3'], attemptArr, props.onClick, history)}
         <BackKey onClick={props.onClick} />

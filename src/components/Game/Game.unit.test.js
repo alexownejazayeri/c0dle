@@ -1,16 +1,30 @@
 import { render, screen } from '@testing-library/react';
 import Game from './Game';
 
-describe('Game component', () => {
-    test('buttons are enabled', () => {
-      render(<Game />);
-      const buttonArray = screen.getAllByRole('button');
-      buttonArray.forEach((el) => expect(el).toBeEnabled());
-    });
+// Does this render what it's supposed to?
+describe('Game component renders', () => {
+  test('the board', () => {
+    // Arrange
+    render(<Game />);
 
-   test('debug game component', () => {
-        render(<Game />);
+    // Act - N/A
 
-        screen.debug();
-    });
+    // Assert
+    const boardElement = screen.getByRole('application', { name: 'game-board' });
+    expect(boardElement).toBeInTheDocument();
+  });
+  test('the keyboard', () => {
+    // Arrange
+    render(<Game />);
+
+    // Act - N/A
+
+    // Assert
+    const keyBoardElement = screen.getByRole('application', { name: 'keyboard' });
+    expect(keyBoardElement).toBeInTheDocument();
+  });
 });
+
+// Does this handle user interactions correctly?
+
+// Success and failure cases for state changes?
