@@ -35,4 +35,31 @@ describe('Board component renders', () => {
 
 // Does it handle user interactions correctly?
 
+// Move this into an integration test folder at the root level
+/* describe('Board behaves correctly when', () => {
+  test('user attempts to key in >5 characters', () => {
+    // Arrange
+    render(<Board />);
+
+    // Act
+    userEvent.keyboard('errorrrr');
+
+    // Assert
+    const boardElement = screen.getByRole('application', { name: 'game-board' });
+    expect(boardElement).toHaveTextContent('error');
+  });
+  test('user attempts to click in >5 characters', () => {
+    // Arrange
+    render(<Game />);
+
+    // Act
+    userEvent.click(screen.getByRole('application', { name: '' }));
+
+    // Assert
+    const boardElement = screen.getByRole('application', { name: 'game-board' });
+    expect(boardElement).toHaveTextContent('error');
+  });
+});
+ */
+
 // Does it handle success and failure cases on state changes?
