@@ -55,3 +55,52 @@ describe('Matrix operations', () => {
     );
   });
 });
+
+// The test for the player data handler functions should be considered
+// For integration testing and good practice for mocking localStorage
+
+/* describe('Player data handlers', () => {
+  test('initialize, update, and push lifetime stats to localStorage for new players (failed)', () => {
+    // Arrange
+    const turn = 0;
+    const winStatus = false;
+
+    window.localStorage = jest.fn();
+    window.localStorage.getItem('lifetime-stats');
+
+    // Act
+
+    // Assert
+    expect(handlePlayerData(turn, winStatus)).not.toBe();
+  });
+
+  test('initialize, update, and push lifetime stats to localStorage for new players (succeeded)', () => {
+    // Arrange
+    const turn = 3;
+    const winStatus = true;
+
+    // Act
+
+    // Assert
+    expect(handlePlayerData(turn, winStatus)).not.toBe();
+  });
+
+  test('read in, update, and push lifetime stats to localStorage for returning players (failed)', () => {
+    // Arrange
+
+    // Act
+
+    // Assert
+    expect(gameSaveHandler()).not.toBe();
+  });
+  test('read in, update, and push lifetime stats to localStorage for returning players (succeeded)', () => {
+    // Arrange
+
+    // Act
+
+    // Assert
+    expect(gameSaveHandler()).not.toBe();
+  });
+
+});
+ */
