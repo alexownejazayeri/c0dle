@@ -56,12 +56,11 @@ class Game extends Component {
 
       if (e.key === 'Enter' && !FUEL.includes(attempts[turn])) {
         alert('Invalid guess.');
-      }
-      // Set win state on enter if...
-      else if (
+      } else if (
+        // Set win state on enter if...
         e.key === 'Enter' && // Enter keyed
         attempts[turn].length === 5 && // Tile row is full
-        attempts[turn] === this.state.codle && // Attempt matches today's code-le
+        attempts[turn] === this.state.codle && // Attempt matches code-le solution
         winState === false // Player hasn't already won
       ) {
         const attempt = attempts[turn].split('');
@@ -94,6 +93,7 @@ class Game extends Component {
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
       } else if (e.key === 'Enter' && attempts[turn].length === 5 && turn === 5 && winState === false) {
+        // Lose state
         const attempt = attempts[turn].split('');
         const answer = this.state.codle;
 
@@ -105,7 +105,7 @@ class Game extends Component {
           matrixHistory: [...this.state.matrixHistory, matrix],
         });
 
-        handlePlayerData(turn, false);
+        handlePlayerData(turn, false); // Updates lifetime data with loss stats
         window.alert('Keep trying, you got this.'); //  replace with function that triggers modal
         this.props.onGameEnd(); // Shows stats modal on game end
       }
