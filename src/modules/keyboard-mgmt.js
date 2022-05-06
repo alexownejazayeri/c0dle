@@ -9,12 +9,6 @@ const getAllAttemptedChars = (gState) => {
   return allAttemptedChars;
 };
 
-// Keyboard generator helpers
-const rowScore = (attemptCharRow) => {
-  const nums = attemptCharRow.filter((el) => typeof el === 'number');
-  return nums.reduce((prev, curr) => prev + curr);
-};
-
 const keyGenerator = (keyArr, attemptArr, onClick, history) =>
   keyArr.map((char) => {
     const lowerChar = char.toLowerCase();
@@ -78,5 +72,11 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) =>
       </button>
     );
   });
+
+// Keyboard generator helper(s)
+const rowScore = (attemptCharRow) => {
+  const nums = attemptCharRow.filter((el) => typeof el === 'number');
+  return nums.reduce((prev, curr) => prev + curr);
+};
 
 export { getAllAttemptedChars, keyGenerator };
