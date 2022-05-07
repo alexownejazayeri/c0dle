@@ -5,7 +5,7 @@ const SettingsModal = (props) => (
   <div className="settings-overlay" onClick={props.onClick}>
     <div className="settings-modal">
       <h1>SETTINGS</h1>
-      <div className="close-icon">
+      <div className="close-icon" role="button" aria-label="close-settings">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M18.1727 18.1726C17.5088 18.8365 16.4324 18.8365 15.7685 18.1726L1.2021 3.60625C0.53821 2.94235 0.538209 1.86597 1.2021 1.20208V1.20208C1.86599 0.538191 2.94237 0.538191 3.60626 1.20208L18.1727 15.7685C18.8366 16.4324 18.8366 17.5088 18.1727 18.1726V18.1726Z"
