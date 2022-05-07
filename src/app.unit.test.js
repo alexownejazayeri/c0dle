@@ -28,11 +28,28 @@ describe('On state change', () => {
     expect(statsModal).not.toBeInTheDocument();
   });
 
-  /* test('help modal visible after click help icon', () => {
-      // Arrange
-        render(<App />);
+  test('help modal visible after click help icon', () => {
+    // Arrange
+    render(<App />);
 
-        // Act
-        userEvent.click(screen.getByRole(''))
-  }) */
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'info' }));
+
+    // Assert
+    const helpModal = screen.queryByRole('heading', { name: '👾 HOW TO PLAY 👾' });
+    expect(helpModal).toBeInTheDocument();
+  });
+
+  test('help modal invisible after clicking out of help icon', () => {
+    // Arrange
+    render(<App />);
+
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'info' }));
+    userEvent.click(screen.getByRole('application', { name: 'close-help' }));
+
+    // Assert
+    const helpModal = screen.queryByRole('heading', { name: '👾 HOW TO PLAY 👾' });
+    expect(helpModal).not.toBeInTheDocument();
+  });
 });
