@@ -46,7 +46,7 @@ class Game extends Component {
         });
       }
 
-      // If no win and backspace keyed
+      // If backspace keyed before win state
       if (winState === false && e.key === 'Backspace') {
         this.setState({
           attempts: attempts.map((el, i) => (i === turn ? el.substring(0, el.length - 1) : el)),
