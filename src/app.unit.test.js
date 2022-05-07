@@ -77,4 +77,29 @@ describe('On state change', () => {
     const helpModal = screen.queryByRole('heading', { name: 'SETTINGS' });
     expect(helpModal).not.toBeInTheDocument();
   });
+
+  test('vegburger modal visible after click veg patties', () => {
+    // Arrange
+    render(<App />);
+
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'vegburger-menu' }));
+
+    // Assert
+    const vegBoi = screen.getByRole('heading', { name: 'Learning Supplements' });
+    expect(vegBoi).toBeInTheDocument();
+  });
+
+  test('vegburger modal invisible after click out of veggie yum yums', () => {
+    // Arrange
+    render(<App />);
+
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'vegburger-menu' }));
+    userEvent.click(screen.getByRole('button', { name: 'close-veger' }));
+
+    // Assert
+    const vegBoi = screen.queryByRole('heading', { name: 'Learning Supplements' });
+    expect(vegBoi).not.toBeInTheDocument();
+  });
 });
