@@ -6,6 +6,8 @@ const Hamburger = (props) => (
       <h2>Learning Supplements</h2>
       <svg
         onClick={props.onShow}
+        role="button"
+        aria-label="close-veger"
         width="20"
         height="20"
         viewBox="0 0 20 20"
