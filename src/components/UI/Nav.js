@@ -6,7 +6,7 @@ const Nav = (props) => (
   <div className="nav">
     <div className="nav-icons1">
       {/* Hamburger Menu SVG */}
-      <button className="btn" onClick={props.onBobby}>
+      <button className="btn" onClick={props.onBobby} aria-label="vegburger-menu">
         <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M0 15.3C0 14.3611 0.761116 13.6 1.7 13.6H22.3C23.2389 13.6 24 14.3611 24 15.3V15.3C24 16.2389 23.2389 17 22.3 17H1.7C0.761117 17 0 16.2389 0 15.3V15.3Z"
@@ -23,7 +23,7 @@ const Nav = (props) => (
         </svg>
       </button>
       {/*Info Icon*/}
-      <button className="btn" onClick={props.onClickHelp}>
+      <button className="btn" onClick={props.onClickHelp} aria-label="info">
         <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="15" r="11" stroke="white" strokeWidth="2" />
           <path
@@ -36,7 +36,7 @@ const Nav = (props) => (
     <h3>CODE-LE</h3>
     <div className="nav-icons2">
       {/*Stats Icon*/}
-      <button className="btn" onClick={props.onClickStats}>
+      <button className="btn" onClick={props.onClickStats} aria-label="stats">
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="16.4545" y="11" width="6.72727" height="12" stroke="#FFFEFE" strokeWidth="2" />
           <path d="M1 7H7.72727V23H1V7Z" stroke="#FFFEFE" strokeWidth="2" />
@@ -44,7 +44,7 @@ const Nav = (props) => (
         </svg>
       </button>
       {/*Settings Cog*/}
-      <button className="btn" onClick={props.onClickSettings}>
+      <button className="btn" onClick={props.onClickSettings} aria-label="settings">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M13.6391 2.6674C14.3085 4.73757 16.4799 5.97787 18.6311 5.51293C20.7527 5.05438 22.2375 7.56336 20.7697 9.12664C19.2813 10.7117 19.2966 13.1665 20.7996 14.7672C22.2423 16.3038 20.8233 18.843 18.6342 18.3699C16.4808 17.9044 14.3052 19.1298 13.6416 21.182C12.9671 23.2682 10.0035 23.1975 9.36094 21.2102C8.69154 19.14 6.5201 17.8997 4.36889 18.3646C2.24727 18.8232 0.762489 16.3142 2.23034 14.7509C3.71867 13.1658 3.7034 10.711 2.20045 9.11038C0.757654 7.57379 2.17666 5.03457 4.36575 5.5077C6.51924 5.97313 8.69479 4.74772 9.35838 2.69553C10.0329 0.609402 12.9965 0.680094 13.6391 2.6674Z"
