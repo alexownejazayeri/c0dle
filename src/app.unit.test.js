@@ -52,4 +52,29 @@ describe('On state change', () => {
     const helpModal = screen.queryByRole('heading', { name: '👾 HOW TO PLAY 👾' });
     expect(helpModal).not.toBeInTheDocument();
   });
+
+  test('settings modal visible after click settings icon', () => {
+    // Arrange
+    render(<App />);
+
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'settings' }));
+
+    // Assert
+    const helpModal = screen.queryByRole('heading', { name: 'SETTINGS' });
+    expect(helpModal).toBeInTheDocument();
+  });
+
+  test('settings modal invisible after clicking out of settings icon', () => {
+    // Arrange
+    render(<App />);
+
+    // Act
+    userEvent.click(screen.getByRole('button', { name: 'settings' }));
+    userEvent.click(screen.getByRole('button', { name: 'close-settings' }));
+
+    // Assert
+    const helpModal = screen.queryByRole('heading', { name: 'SETTINGS' });
+    expect(helpModal).not.toBeInTheDocument();
+  });
 });
