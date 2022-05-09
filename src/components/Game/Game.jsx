@@ -11,7 +11,6 @@ import Board from './Board';
 import Keyboard from './Keyboard';
 
 import './Game.css';
-
 import FUEL from '../../vocab-list';
 
 class Game extends Component {
