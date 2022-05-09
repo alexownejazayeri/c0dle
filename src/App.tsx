@@ -11,7 +11,9 @@ import Hamburger from './components/UI/Hamburger';
 import './index.css';
 import './components/UI/Hamburger.css';
 
-const App = () => {
+
+
+const App: React.FC = () => {
   const [statsModalVisible, setStatsModalVisible] = useState(false);
   const [helpModalVisible, setHelpModalVisible] = useState(false);
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
