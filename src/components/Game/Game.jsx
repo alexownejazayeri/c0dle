@@ -9,8 +9,10 @@ import {
 
 import Board from './Board';
 import Keyboard from './Keyboard';
+import NewGameButton from '../UI/NewGameButton';
 
-import './Game.css';
+import styled from 'styled-components';
+
 import FUEL from '../../vocab-list';
 
 class Game extends Component {
@@ -185,11 +187,11 @@ class Game extends Component {
     window.localStorage.setItem('game-state', JSON.stringify(this.state));
 
     return (
-      <div className="main">
-        <div className="game">
-          <button className="new-game-btn" onClick={newGameHandler}>
+      <Main>
+        <GameDiv>
+          <NewGameButton className="new-game-btn" onClick={newGameHandler}>
             New Game
-          </button>
+          </NewGameButton>
           <Board
             attempts={this.state.attempts}
             codle={this.state.codle}
@@ -197,10 +199,31 @@ class Game extends Component {
             turn={this.state.turn}
           />
           <Keyboard onClick={clickHandler} onKeyDown={keyDownHandler} globalState={this.state.matrixHistory} />
-        </div>
-      </div>
+        </GameDiv>
+      </Main>
     );
   }
 }
 
 export default Game;
+
+//================================================
+
+export const Main = styled.div`
+   {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+`;
+
+export const GameDiv = styled.div`
+{
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    min-width: 355px;
+    align-items: center;
+  }
+`;
+
