@@ -1,63 +1,46 @@
-.tile {
-    display: flex;
-    font-size: 2rem;
-    text-align: center;
-    line-height: 2rem;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    user-select: none;
-    height: 55px;
-    width: 55px;
-    border-radius: 15px;
-    border: 2.3px white solid;
-  }
+.tile-correct {
+  display: flex;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  user-select: none;
+  height: 55px;
+  width: 55px;
+  border-radius: 15px;
+  border: 2.3px rgb(100, 252, 30) solid;
+}
 
-  .tile-correct {
-    display: flex;
-    font-size: 2rem;
-    text-align: center;
-    line-height: 2rem;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    user-select: none;
-    height: 55px;
-    width: 55px;
-    border-radius: 15px;
-    border: 2.3px rgb(100, 252, 30) solid;
-  }
+.tile-present {
+  display: flex;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  user-select: none;
+  height: 55px;
+  width: 55px;
+  border-radius: 15px;
+  border: 2.3px #ffec8d solid;
+}
 
-  .tile-present {
-    display: flex;
-    font-size: 2rem;
-    text-align: center;
-    line-height: 2rem;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    user-select: none;
-    height: 55px;
-    width: 55px;
-    border-radius: 15px;
-    border: 2.3px #ffec8d solid;
-  }
-
-  .tile-incorrect {
-    display: flex;
-    font-size: 2rem;
-    text-align: center;
-    line-height: 2rem;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    user-select: none;
-    height: 55px;
-    width: 55px;
-    border-radius: 15px;
-    border: 2.3px rgba(94, 94, 94, 0.301) solid;
-  }
+.tile-incorrect {
+  display: flex;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  user-select: none;
+  height: 55px;
+  width: 55px;
+  border-radius: 15px;
+}

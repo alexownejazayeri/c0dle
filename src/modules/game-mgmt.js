@@ -20,7 +20,7 @@ const statusHandler = (guess, ans) => {
   // Scan for correctness
   guess.forEach((char, i) => {
     if (charPool.includes(char) && guess[i] === ans[i]) {
-      statusArr[i] = '-correct';
+      statusArr[i] = 'correct';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
@@ -29,7 +29,7 @@ const statusHandler = (guess, ans) => {
   // Scan for presence
   guess.forEach((char, i) => {
     if (!indexArr.includes(i) && charPool.includes(char) && guess[i] !== ans[i]) {
-      statusArr[i] = '-present';
+      statusArr[i] = 'present';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
@@ -38,7 +38,7 @@ const statusHandler = (guess, ans) => {
   // Scan for incorrectness
   guess.forEach((char, i) => {
     if (!indexArr.includes(i) && !charPool.includes(char)) {
-      statusArr[i] = '-incorrect';
+      statusArr[i] = 'incorrect';
       charPool.splice(charPool.indexOf(char), 1);
       indexArr.push(i);
     }
