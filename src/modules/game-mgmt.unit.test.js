@@ -23,7 +23,7 @@ describe('Status Handler', () => {
 
     // Assert
     expect(JSON.stringify(statusHandler(guess, solution))).toBe(
-      '["-incorrect","-correct","-correct","-correct","-incorrect"]',
+      '["incorrect","correct","correct","correct","incorrect"]',
     );
   });
 });
