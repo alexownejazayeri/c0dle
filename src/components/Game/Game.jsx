@@ -68,7 +68,7 @@ class Game extends Component {
         const answer = this.state.codle;
 
         const matrix = evaluateMatrix(answer, attempt);
-        const roundStatus = new Array(5).fill('-correct');
+        const roundStatus = new Array(5).fill('correct');
 
         this.setState({
           status: [...this.state.status, roundStatus],
@@ -143,7 +143,7 @@ class Game extends Component {
         attempts[turn] === this.state.codle && // Attempt matches today's code-le
         winState === false // Player hasn't already won
       ) {
-        const roundStatus = new Array(5).fill('-correct');
+        const roundStatus = new Array(5).fill('correct');
 
         this.setState({
           status: [...this.state.status, roundStatus],
