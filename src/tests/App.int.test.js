@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Game from '../@components/Game/Game';
+import Game from '../Game/Game';
 
 // Success and failure cases for state changes?
 

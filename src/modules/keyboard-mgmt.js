@@ -1,3 +1,4 @@
+import { KeyboardLetterButton } from '../@Components/UI/Buttons/Buttons';
 // ============================= KEYBOARD HELPER FUNCTIONS ===================================
 
 const getAllAttemptedChars = (gState) => {
@@ -12,7 +13,7 @@ const getAllAttemptedChars = (gState) => {
 const keyGenerator = (keyArr, attemptArr, onClick, history) =>
   keyArr.map((char) => {
     const lowerChar = char.toLowerCase();
-    let style = '';
+    let status = '';
     let charStyles = [];
     let repeatCharAttemptedIndices = [];
     let answerIndicesArr = [];
@@ -27,7 +28,7 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) =>
 
             // If it never occurs, it's wrong
             if (charNum === 0) {
-              style = '-incorrect';
+              status = '-incorrect';
             }
 
             // If it only occurs once, check for positional correctness
@@ -58,19 +59,21 @@ const keyGenerator = (keyArr, attemptArr, onClick, history) =>
       }
 
       if (charStyles.includes('-correct')) {
-        style = '-correct';
+        status = '-correct';
       }
 
       if (charStyles.includes('-present') && !charStyles.includes('-correct')) {
-        style = '-present';
+        status = '-present';
       }
     }
 
     return (
-      <button key={char} id={`${char}-key`} className={`letter-key${style} btn`} onClick={onClick}>
+      <KeyboardLetterButton key={char} id={`${char}-key`} status={status} onClick={onClick}>
         {char}
-      </button>
+      </KeyboardLetterButton>
     );
+    // Update the letter-key style bit in the Button component
+    // Should take this as props and conditionally set border color, etc.
   });
 
 // Keyboard generator helper(s)

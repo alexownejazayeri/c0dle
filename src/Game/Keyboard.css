@@ -1,0 +1,21 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  min-width: 420px;
+  min-height: 200px;
+}
+
+.btn {
+  all: unset;
+  cursor: pointer;
+}
+
+.key-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
