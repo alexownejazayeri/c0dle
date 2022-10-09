@@ -1,4 +1,4 @@
-import { KeyboardLetterButton } from '../@Components/UI/Buttons/Buttons';
+import { KeyboardLetterButton } from '../@Components/UI/Buttons/ButtonStyles';
 // ============================= KEYBOARD HELPER FUNCTIONS ===================================
 
 const getAllAttemptedChars = (gState) => {

@@ -40,3 +40,42 @@ export const KeyboardLetterButton = styled.button`
         : 'rgba(255, 255, 255, 0.425)'};
   }
 `;
+
+export const KeyboardBackButtonContainer = styled.div`
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border: 2px white solid;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.425);
+  }
+`;
+
+export const KeyboardBackButton = styled.button`
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border: 2px white solid;
+  border-radius: 10px;
+
+  border: none !important;
+  background-color: transparent !important;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.425);
+  }
+`;
