@@ -5,7 +5,7 @@ import VegBurgerIcon from '../SvgIcons/VegBurgerIcon';
 import InfoIcon from '../SvgIcons/InfoIcon';
 import StatsIcon from '../SvgIcons/StatsIcon';
 import SettingsIcon from '../SvgIcons/SettingsIcon';
-import { NavButton } from '../Buttons/Buttons';
+import { NavButton } from '../Buttons/ButtonStyles';
 import { NavHeading } from '../Typography/Typography';
 
 const Nav = (props) => (

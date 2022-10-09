@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllAttemptedChars, keyGenerator } from '../modules/keyboard-mgmt';
 
-import BackKey from '../@Components/UI/BackKey';
+import BackKey from '../@Components/UI/Buttons/BackKey';
 import EnterKey from '../@Components/UI/EnterKey';
 import './Keyboard.css';
 
