@@ -1,10 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import './Nav.css';
 
 const Nav = (props) => (
-  <div className="nav">
-    <div className="nav-icons1">
+  <TopNav>
+    <NavIconGroup>
       {/* Hamburger Menu SVG */}
       <button className="btn" onClick={props.onBobby} aria-label="vegburger-menu">
         <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,9 +33,9 @@ const Nav = (props) => (
           />
         </svg>
       </button>
-    </div>
+    </NavIconGroup>
     <h3>CODE-LE</h3>
-    <div className="nav-icons2">
+    <NavIconGroup>
       {/*Stats Icon*/}
       <button className="btn" onClick={props.onClickStats} aria-label="stats">
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +59,22 @@ const Nav = (props) => (
           />
         </svg>
       </button>
-    </div>
-  </div>
+    </NavIconGroup>
+  </TopNav>
 );
+
+// ==== Styled Components ====
+
+const TopNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const NavIconGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 export default Nav;

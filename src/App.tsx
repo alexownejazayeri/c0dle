@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-import Game from './components/Game/Game';
-import Nav from './components/UI/Nav';
-import Card from './components/UI/Card';
-import StatsModal from './components/UI/StatsModal/StatsModal';
-import HelpModal from './components/UI/HelpModal';
-import SettingsModal from './components/UI/SettingsModal';
-import Hamburger from './components/UI/Hamburger';
+import Game from './@components/Game/Game';
+import Nav from './@components/UI/Nav';
+import Card from './@components/UI/Card';
+import StatsModal from './@components/UI/StatsModal/StatsModal';
+import HelpModal from './@components/UI/HelpModal';
+import SettingsModal from './@components/UI/SettingsModal';
+import Hamburger from './@components/UI/Hamburger';
 
 import './index.css';
-import './components/UI/Hamburger.css';
+import './@components/UI/Hamburger.css';
 
 const App: React.FC = () => {
   const [statsModalVisible, setStatsModalVisible] = useState(false);
