@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import {
-  getRandomVocab,
-  statusHandler,
-  evaluateMatrix,
-  handlePlayerData,
-  gameSaveHandler,
-} from '../../modules/game-mgmt';
+import { getRandomVocab, statusHandler, evaluateMatrix, handlePlayerData, gameSaveHandler } from '../modules/game-mgmt';
 
 import Board from './Board';
 import Keyboard from './Keyboard';
-import NewGameButton from '../UI/NewGameButton';
+import NewGameButton from '../@Components/UI/NewGameButton';
 
 import styled from 'styled-components';
 
-import FUEL from '../../vocab-list';
+import FUEL from '../vocab-list';
 
 class Game extends Component {
   constructor(props) {
@@ -218,7 +212,7 @@ export const Main = styled.div`
 `;
 
 export const GameDiv = styled.div`
-{
+   {
     display: flex;
     flex-direction: column;
     width: 35vw;
@@ -226,4 +220,3 @@ export const GameDiv = styled.div`
     align-items: center;
   }
 `;
-

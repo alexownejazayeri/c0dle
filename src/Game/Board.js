@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Row from '../UI/Row';
+import Row from '../@Components/UI/Row';
 import './Board.css';
 
 const Board = (props) => {
