@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './BackKey.css';
+import styled from 'styled-components';
 
 const BackKey = (props) => (
-  <div className="bck-key">
-    <button id="bck-key" className="btn-svg" onClick={props.onClick} aria-label="BACK">
+  <BackKeyContainer>
+    <BackKeyButton id="bck-key" className="btn-svg" onClick={props.onClick} aria-label="BACK">
       <svg id="bck-key" width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           id="bck-key"
@@ -18,8 +18,31 @@ const BackKey = (props) => (
           fill="white"
         />
       </svg>
-    </button>
-  </div>
+    </BackKeyButton>
+  </BackKeyContainer>
 );
 
 export default BackKey;
+
+const BackKeyContainer = styled.div`
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border: 2px white solid;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.425);
+  }
+`;
+const BackKeyButton = styled.button`
+  border: none !important;
+  background-color: transparent !important;
+  outline: none;
+  cursor: pointer;
+`;
